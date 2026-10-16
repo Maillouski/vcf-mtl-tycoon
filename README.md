@@ -8,7 +8,7 @@ plus a plain walk-through of the hall, three prequels and two small games.
 | Page | Link | What it is |
 |---|---|---|
 | **The game** | https://cmolson.github.io/vcf-mtl-tycoon/ | VCF Tycoon: play a weekend at the show, or walk around the hall. |
-| **The hall walk-through** | https://cmolson.github.io/vcf-mtl-tycoon/walkthrough.html | Just the hall: the V22 floor plan in 3D, booth names and cards, the speakers' corner, a guided tour. No game. French / English (add `?lang=fr` or `?lang=en`). Made to be embedded on the show's website. |
+| **The hall walk-through** | https://cmolson.github.io/vcf-mtl-tycoon/walkthrough.html | Just the hall: the organisers' current floor plan in 3D, booth names and cards, the speakers' corner, a guided tour. No game. French / English (add `?lang=fr` or `?lang=en`). Made to be embedded on the show's website. |
 | **COPY PROTECTED** | https://cmolson.github.io/vcf-mtl-tycoon/copyprotected.html | Crack the hall, booth by booth: quick microgames about 1980s copy protection (code wheels, manual lookups, key disks, dongles, lens decoders, colour charts). Cracked booths show your initials; finish an island for a cracktro. French / English. |
 | **Boothle** | https://cmolson.github.io/vcf-mtl-tycoon/boothle.html | A daily puzzle: one close-up from the hall, six guesses on the floor plan, a result to share. A new one every day until the show. French / English. |
 | **The drive** | https://cmolson.github.io/vcf-mtl-tycoon/roadtrip.html | Prequel: pack the car in Ottawa, drive the 417 and the A-30 to Saint-Lambert. |
@@ -22,7 +22,7 @@ Play a weekend at the show, Friday load-in to Sunday teardown, as:
 - **Land of the Portables**: vintage luggables and laptops, the guest book, Dial-a-Museum.
 - **Griefenbunker LAN**: keep the LAN party's seats full and the players happy.
 - **Nick, the showrunner**: the whole hall: check-in, power, badges, payments, volunteers.
-- **Clint, the retro-tech video maker**: a line of fans at the guest table, forty booths to film.
+- **Clint, the retro-tech video maker**: a line of fans at the guest table, forty-five booths to film.
 
 Or just walk around the hall. There's also an 8-minute show-floor demo. French / English.
 
