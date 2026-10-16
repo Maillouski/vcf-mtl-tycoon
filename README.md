@@ -50,7 +50,7 @@ guesses. Share the result as a line of squares. `?practice` plays random ones.
 
 ## The walk-through
 
-`walkthrough.html` is small (about 240 KB) and loads three.js from a CDN. It opens on a
+`walkthrough.html` is small (about 510 KB) and loads three.js from a CDN. It opens on a
 fly-over of the whole hall; Walk, 3rd person and Fly around are in its menu, along with
 booth names, table skirts (coloured by booth type), the crowd and the go-to places.
 The layout is preliminary: booths may still move before the show.
