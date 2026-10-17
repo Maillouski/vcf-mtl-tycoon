@@ -288,14 +288,14 @@ var BL = window.BOOTHLE = {};
       metaDesc: "A daily puzzle: one close-up from the VCF Montréal 2.0 hall, six guesses to find the booth on the map.",
       skip: "Skip to the map", tag: "Which booth is this close-up from? Tap a booth on the map to guess.",
       helpT: "How to play", statsT: "Statistics", close: "Close", guess: "Guess", guessesH: "Your guesses",
-      mapRole: "hall map", corner: "Corner", entrance: "Entrance →",
+      mapRole: "hall map", corner: "Corner", entrance: "Entrance",
       mapHelp: "Tap a booth to see its name, then press Guess. Keyboard: arrow keys move between booths, type a booth number, Enter guesses.",
       legend: "Tables: <span class='lg ex'></span> exhibitors <span class='lg ve'></span> vendors <span class='lg cr'></span> creators",
       orList: "Or pick from the list", listNone: "Choose a booth…", share: "Share", next: "Another one", openHall: "Walk the 3D hall",
       practiceLink: "Practice (random puzzles)", dailyLink: "Back to today's puzzle", playGame: "Play VCF Tycoon",
       footNote: "VCF Montréal 2.0 · Nov 7–8, 2026 · drawings, not photos",
       num: "#{n}", practice: "Practice", preview: "Preview",
-      mapLabel: "Hall map, north up, the entrance on the east side. {n} booths.",
+      mapLabel: "Hall map, north up, the entrance on the west side. {n} booths.",
       selNone: "No booth chosen yet", selBooth: "Booth {n} · {name}", selDone: "Already guessed: booth {n}",
       selAnnounce: "Booth {n}, {name} Press Enter to guess.",
       already: "You already guessed booth {n}.",
@@ -342,14 +342,14 @@ var BL = window.BOOTHLE = {};
       metaDesc: "Un casse-tête quotidien" + NB + ": un gros plan pris dans la salle du VCF Montréal 2.0, six essais pour trouver le kiosque sur le plan.",
       skip: "Aller au plan", tag: "De quel kiosque vient ce gros plan" + NB + "? Touchez un kiosque sur le plan pour deviner.",
       helpT: "Comment jouer", statsT: "Statistiques", close: "Fermer", guess: "Deviner", guessesH: "Vos essais",
-      mapRole: "plan de la salle", corner: "Coin", entrance: "Entrée →",
+      mapRole: "plan de la salle", corner: "Coin", entrance: "Entrée",
       mapHelp: "Touchez un kiosque pour voir son nom, puis Deviner. Au clavier" + NB + ": les flèches passent d'un kiosque à l'autre, tapez un numéro, Entrée pour deviner.",
       legend: "Tables" + NB + ": <span class='lg ex'></span> exposants <span class='lg ve'></span> marchands <span class='lg cr'></span> créateurs",
       orList: "Ou choisissez dans la liste", listNone: "Choisir un kiosque…", share: "Partager", next: "Un autre", openHall: "Parcourir la salle 3D",
       practiceLink: "Entraînement (casse-têtes au hasard)", dailyLink: "Retour au casse-tête du jour", playGame: "Jouer à VCF Tycoon",
       footNote: "VCF Montréal 2.0 · 7 et 8 nov. 2026 · des dessins, pas des photos",
       num: "n°" + NB + "{n}", practice: "Entraînement", preview: "Avant-première",
-      mapLabel: "Plan de la salle, le nord en haut, l'entrée du côté est. {n} kiosques.",
+      mapLabel: "Plan de la salle, le nord en haut, l'entrée du côté ouest. {n} kiosques.",
       selNone: "Aucun kiosque choisi", selBooth: "Kiosque {n} · {name}", selDone: "Déjà essayé" + NB + ": kiosque {n}",
       selAnnounce: "Kiosque {n}, {name} Appuyez sur Entrée pour deviner.",
       already: "Vous avez déjà essayé le kiosque {n}.",
@@ -1466,7 +1466,7 @@ var BL = window.BOOTHLE = {};
     { en: "the carrying handle of a luggable, a computer you could (just about) carry.", fr: "la poignée de transport d'un ordinateur transportable, qu'on pouvait (à peine) porter." });
 
   // the hint after guess 3: where in the hall to look (the hall is three islands, west / middle / east, each split by the
-  // central aisle into a north and a south half; every island has a west side and an east side; the entrance is east)
+  // central aisle into a north and a south half; every island has a west side and an east side; the entrance is west, the double doors mid-wall)
   BL.AREA = {                                         // from the V39 plan (hall.json): which island, half, side, and where along it
     "29": { en: "west island, north half, west side, just south of the LAN party.", fr: "îlot ouest, moitié nord, côté ouest, juste au sud du LAN party." },
     "10": { en: "west island, the north end, west side.", fr: "îlot ouest, au bout nord, côté ouest." },
@@ -1488,16 +1488,16 @@ var BL = window.BOOTHLE = {};
     "34": { en: "middle island, the north end, east side.", fr: "îlot du milieu, au bout nord, côté est." },
     "35": { en: "west island, the south end, east side.", fr: "îlot ouest, au bout sud, côté est." },
     "36": { en: "east island, south half, west side, in the middle.", fr: "îlot est, moitié sud, côté ouest, au milieu." },
-    "37": { en: "east island, south half, entrance side, just across the central aisle.", fr: "îlot est, moitié sud, côté entrée, juste de l'autre côté de l'allée centrale." },
+    "37": { en: "east island, south half, east wall side, just across the central aisle.", fr: "îlot est, moitié sud, côté mur est, juste de l'autre côté de l'allée centrale." },
     "40": { en: "west island, north half, east side, the second-to-last booth before the central aisle.", fr: "îlot ouest, moitié nord, côté est, l'avant-dernier kiosque avant l'allée centrale." },
-    "41": { en: "east island, south half, entrance side, in the middle.", fr: "îlot est, moitié sud, côté entrée, au milieu." },
+    "41": { en: "east island, south half, east wall side, in the middle.", fr: "îlot est, moitié sud, côté mur est, au milieu." },
     "1": { en: "west island, south half, west side, the second booth past the central aisle.", fr: "îlot ouest, moitié sud, côté ouest, le deuxième kiosque après l'allée centrale." },
     "42": { en: "middle island, south half, east side, the second booth from the south end.", fr: "îlot du milieu, moitié sud, côté est, le deuxième kiosque à partir du bout sud." },
     "43": { en: "west island, the south end, west side.", fr: "îlot ouest, au bout sud, côté ouest." },
     "45": { en: "middle island, east side, the last booth before the central aisle.", fr: "îlot du milieu, côté est, le dernier kiosque avant l'allée centrale." },
     "46": { en: "middle island, the south end, west side.", fr: "îlot du milieu, au bout sud, côté ouest." },
-    "47": { en: "east island, north half, entrance side, the last booth before the central aisle: one table sticking out into the east aisle.", fr: "îlot est, moitié nord, côté entrée, le dernier kiosque avant l'allée centrale" + NB + ": une table qui avance dans l'allée est." },
-    "48": { en: "east island, north half, entrance side, the second booth from the north end.", fr: "îlot est, moitié nord, côté entrée, le deuxième kiosque à partir du bout nord." }
+    "47": { en: "east island, north half, east wall side, the last booth before the central aisle: one table sticking out into the east aisle.", fr: "îlot est, moitié nord, côté mur est, le dernier kiosque avant l'allée centrale" + NB + ": une table qui avance dans l'allée est." },
+    "48": { en: "east island, north half, east wall side, the second booth from the north end.", fr: "îlot est, moitié nord, côté mur est, le deuxième kiosque à partir du bout nord." }
   };
 
   // the reveal's card line per booth (EN/FR from BOOTHS-RESEARCH.md; "Expected:" where the table is not confirmed)
@@ -1613,7 +1613,7 @@ var BL = window.BOOTHLE = {};
   var svg, gMarks, sel = null, onPick = null, onGo = null, locked = false;
   M.build = function (host, pick, go) {
     onPick = pick; onGo = go; sel = null; locked = false; last = null;
-    svg = el("svg", { viewBox: "-2 -6.5 107 108.5", "aria-hidden": "true", focusable: "false" });
+    svg = el("svg", { viewBox: "-5 -6.5 107 108.5", "aria-hidden": "true", focusable: "false" });
     var defs = el("defs", {}, svg);
     var pat = el("pattern", { id: "hatch", width: 2, height: 2, patternUnits: "userSpaceOnUse", patternTransform: "rotate(45)" }, defs);
     el("rect", { width: 1, height: 2, fill: "rgba(0,0,0,.35)" }, pat);
@@ -1626,7 +1626,7 @@ var BL = window.BOOTHLE = {};
     HALL.other.forEach(function (o) { el("rect", { x: o[0] - o[2] / 2, y: o[1] - o[3] / 2, width: o[2], height: o[3], "class": "m-o m-o" + o[4] }, svg); });
     var lbl = el("g", { "class": "m-lbl" }, svg);
     el("text", { x: 5.5, y: 9.5, "class": "m-place" }, lbl).textContent = BL.t("corner");
-    el("text", { x: 102.6, y: 50, "class": "m-place", "text-anchor": "middle", transform: "rotate(90 102.6 50)" }, lbl).textContent = BL.t("entrance");
+    el("text", { x: -2.4, y: 50, "class": "m-place", "text-anchor": "middle", transform: "rotate(-90 -2.4 50)" }, lbl).textContent = BL.t("entrance");   // the west wall's double doors (owner on site, 2026-10-16)
     el("text", { x: 0.5, y: -2.2, "class": "m-north" }, lbl).textContent = "N ↑";
     ids.forEach(function (n) {
       var b = B[n], g = el("g", { "class": "m-b m-" + b.cat, "data-b": n }, svg);

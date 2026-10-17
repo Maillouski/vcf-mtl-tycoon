@@ -177,7 +177,7 @@ button.tour.on { background: var(--accent); color: #fff; }
   <div class="row"><button id="doom-big" data-i18n="doomBig">Big screen</button><button id="doom-leave" data-i18n="doomLeave">Leave ( ` )</button></div>
 </div>
 <div id="doombig" hidden></div>
-<div id="where">Public entrance<small>Walk in and turn left for the islands</small></div>
+<div id="where">Public entrance<small>Check-in on your left; the islands straight ahead</small></div>
 <canvas id="mini" width="360" height="360" aria-label="Map of the hall; click to jump" data-i18n-aria="map"></canvas>
 <div id="joy" aria-label="Move: push up to walk, sideways to turn" data-i18n-aria="joy"><i></i></div>
 <div id="cross" hidden></div>
@@ -1244,7 +1244,7 @@ button.tour.on { background: var(--accent); color: #fff; }
 </script>
 <script>if (!window.THREE) (function () { var fr = /^fr/.test((new URLSearchParams(location.search).get("lang")) || localStorage.getItem("hall-lang") || navigator.language || ""), d = document.createElement("div"); d.setAttribute("role", "alert"); d.style.cssText = "position:fixed;inset:0;z-index:99;display:grid;place-items:center;padding:24px;background:#1b1a17;color:#f3ecda;font:600 17px/1.5 Archivo,system-ui,sans-serif;text-align:center"; d.innerHTML = fr ? "<p>Le moteur 3D (three.js) n'a pas pu être chargé. Un bloqueur de contenu ou un réseau qui bloque cdnjs.cloudflare.com et cdn.jsdelivr.net l'empêche peut-être.<br><br><button onclick=\"location.reload()\" style=\"font:inherit;padding:8px 18px\">Réessayer</button></p>" : "<p>Couldn't load the 3D engine (three.js). A content blocker, or a network that blocks cdnjs.cloudflare.com and cdn.jsdelivr.net, may be stopping it.<br><br><button onclick=\"location.reload()\" style=\"font:inherit;padding:8px 18px\">Try again</button></p>"; document.body.appendChild(d); })();</script>
 <script>window.GAME_ONLY = true; window.VCF_PREQUELS = {"drive": "roadtrip.html", "flight": "flight.html", "nick": "nick.html"};</script>
-<script>window.VCF_BUILD = {"v": "v0.234-2098c6b", "date": "2026-10-16"};</script>
+<script>window.VCF_BUILD = {"v": "v0.239-de39e7c", "date": "2026-10-16"};</script>
 <script>window.VCF_MUSEUM_AUDIO = "audio/museum/";</script>
 <script>
 // ---------------------------------------------------------------- language (FR / EN)
@@ -1276,6 +1276,8 @@ var I18N = {
     table: "table", tables: "tables", us: " · that's us", corner: "Speakers' corner", inCorner: " · beside the speakers' corner",
     cross: "Cross-aisle", crossSub: "{w} wide, the full width of the room", room: "Room D 121", roomSub: "VCF Montréal 2026 · Champlain College Saint-Lambert",
     westWall: "west wall", storage: "Consignment", storageSub: "for sale · sales desk · free pile", jam: "Code Jam", entrance: "Public entrance",
+    checkin: "Check-in", checkinSub: "badges · registration", entranceSub: "Check-in on your left; the islands straight ahead",
+    checkinText: "Just inside the public entrance, on your left as you come in: the volunteers check you in and hand you your badge.",
     tourWhere: "Tour · {i} of {n}: {t}", tourSub: "Any key, a tap or Stop tour ends it",
     doomNear: "LAN party PC: DOOM: the VCF hall map", doomNearSub: "Click its screen or press P to play",
     doomOn: "Playing DOOM: the VCF hall map", doomKeys: "Arrows move · Ctrl fire · Space open · Esc menu · ` to leave",
@@ -1283,9 +1285,9 @@ var I18N = {
     vintage: "Something vintage: walk over and see.", tbc: "Details to come.",
     aimClick: "click for info", aimTap: "tap for info", aimKey: "E / Enter: info", aimClickG: "Shift+click: info", aimTapG: "hold for info", aimKeyG: "Shift+E: info",
     place_start: "Booths 10 and 29", place_entrance: "Public entrance", place_corner: "Speakers' corner",
-    known29: "Our booth: 1981-1991 luggables and laptops that sign a live guest book over phone lines, three phones that call the museum, and a network rack behind. Click a machine for its card.",
+    known29: "Portable computers from 1981 to 1991, from the Osborne 1 and the Kaypros to the Compaq Portables and early notebooks, connected the way they would have been at the time: by modem over an analog phone system and by serial lines. Each one can sign a shared guest book, and the booth phones call a small audio museum about the machines.",
     known10: "Four LAN PCs, a server and gamepads.", known10doom: " The screens run DOOM: press P or click a screen to play.",
-    east: "East wall", entranceText: "Room D 121 at Champlain College Saint-Lambert, VCF Montréal 2026. The three islands are ahead and to the right; booth 29 is on the far side.",
+    east: "East wall", entranceText: "Room D 121 at Champlain College Saint-Lambert, VCF Montréal 2026, through the two pairs of double doors in the middle of the west wall. The cross-aisle runs straight ahead to the east wall, between the three islands. Check-in is just inside on your left; the consignment area and the Code Jam are on your right, along the west wall.",
     west: "West wall", cornerText: "The guests' tables against the west wall: {s}. Booth {b} ({n}) is beside them.",
     cornerText1: "The guests' table against the west wall: {s}. Booth {b} ({n}) is beside it." },
   fr: { title: "VCF Montréal 2026 · Salle D 121", where: "Collège Champlain Saint‑Lambert", ft: "pi", page: "VCF Montréal : visite de la salle",
@@ -1306,6 +1308,8 @@ var I18N = {
     table: "table", tables: "tables", us: " · c'est nous", corner: "Coin des conférenciers", inCorner: " · à côté du coin des conférenciers",
     cross: "Allée transversale", crossSub: "{w} de large, toute la largeur de la salle", room: "Salle D 121", roomSub: "VCF Montréal 2026 · Collège Champlain Saint-Lambert",
     westWall: "mur ouest", storage: "Consigne", storageSub: "à vendre · caisse · objets gratuits", jam: "Code Jam", entrance: "Entrée publique",
+    checkin: "Accueil", checkinSub: "badges · inscription", entranceSub: "L'accueil à gauche; les îlots droit devant",
+    checkinText: "Juste après l'entrée publique, à gauche en entrant" + NB + ": les bénévoles vous inscrivent et vous remettent votre badge.",
     tourWhere: "Visite · {i} sur {n}" + NB + ": {t}", tourSub: "Une touche, un toucher ou «" + NB + "Arrêter la visite" + NB + "» l'arrête",
     doomNear: "PC du LAN party" + NB + ": DOOM sur la carte de la salle", doomNearSub: "Cliquez sur l'écran ou appuyez sur P pour jouer",
     doomOn: "DOOM en cours" + NB + ": la carte de la salle", doomKeys: "Flèches" + NB + ": bouger · Ctrl" + NB + ": tirer · Espace" + NB + ": ouvrir · Échap" + NB + ": menu · `" + NB + ": quitter",
@@ -1313,9 +1317,9 @@ var I18N = {
     vintage: "Du matériel d'époque" + NB + ": allez voir sur place.", tbc: "Détails à venir.",
     aimClick: "cliquez pour la fiche", aimTap: "touchez pour la fiche", aimKey: "E / Entrée" + NB + ": fiche", aimClickG: "Maj+clic" + NB + ": fiche", aimTapG: "appui long" + NB + ": fiche", aimKeyG: "Maj+E" + NB + ": fiche",
     place_start: "Kiosques 10 et 29", place_entrance: "Entrée publique", place_corner: "Coin des conférenciers",
-    known29: "Notre kiosque" + NB + ": des transportables et des portables de 1981 à 1991 qui signent un livre d'or en direct par ligne téléphonique, trois téléphones qui appellent le musée, et une baie réseau derrière. Cliquez sur une machine pour sa fiche.",
+    known29: "Des ordinateurs transportables et portables de 1981 à 1991, de l'Osborne 1 et des Kaypro aux Compaq Portable et aux premiers ordinateurs bloc-notes, reliés comme ils l'auraient été à l'époque" + NB + ": par modem sur un système téléphonique analogique et par liaison série. Chacun peut signer un livre d'or commun, et les téléphones du kiosque appellent un petit musée audio consacré aux machines.",
     known10: "Quatre PC en réseau, un serveur et des manettes.", known10doom: " Les écrans font tourner DOOM" + NB + ": appuyez sur P ou cliquez sur un écran pour jouer.",
-    east: "Mur est", entranceText: "Salle D 121 du Collège Champlain Saint-Lambert, VCF Montréal 2026. Les trois îlots sont devant et à droite; le kiosque 29 est de l'autre côté.",
+    east: "Mur est", entranceText: "Salle D 121 du Collège Champlain Saint-Lambert, VCF Montréal 2026, par les deux paires de portes doubles au milieu du mur ouest. L'allée transversale file droit devant jusqu'au mur est, entre les trois îlots. L'accueil est juste à gauche en entrant; la consigne et le Code Jam sont à droite, le long du mur ouest.",
     west: "Mur ouest", cornerText: "Les tables des invités, contre le mur ouest" + NB + ": {s}. Le kiosque {b} ({n}) est juste à côté.",
     cornerText1: "La table des invités, contre le mur ouest" + NB + ": {s}. Le kiosque {b} ({n}) est juste à côté." }
 };
@@ -1324,8 +1328,6 @@ var I18N = {
 // at the entrance
 if (window.SITE_BUILD) {
   I18N.en.go_ours = "Booth 29"; I18N.fr.go_ours = "Kiosque 29"; I18N.en.us = I18N.fr.us = "";
-  I18N.en.known29 = I18N.en.known29.replace(/^Our booth:/, "Land of the Portables:");
-  I18N.fr.known29 = I18N.fr.known29.replace(/^Notre kiosque/, "Land of the Portables");
 }
 I18N.en.fold = "Fold / unfold"; I18N.fr.fold = "Replier / déplier";
 I18N.en.prelim = "Preliminary layout: booths may still move before the show.";
@@ -1451,6 +1453,45 @@ var D = {
   "desc": {"20": "Handheld Gaming in the 80s, 90s and 2000s (Atari, Nintendo, Sega and more).", "10": "The Griefenbunker is a LAN Party community in Ottawa, Canada that gathers every 10 weeks or so to game like it's 1999.  They've brought a four-player LAN setup, complete with dedicated servers, so people can enjoy the experience at VCF.", "29": "I would like to show several Compaq portables, along with Kaypro and Osborne machines. If possible, I would also like to show the Commodore PET and the Econo PET project.", "19": "L'exposition pr\u00e9sente Gemstone Warrior et Gemstone Healer sur deux ordinateurs. Chaque station dispose d'un Apple IIe, d'une manette de jeu et d'un moniteur II (phosphore vert). Gemstone Warrior est un exemplaire original pour Apple II version 1.1. Vu que Gemstone Healer est une copie pour Commodore 64, j'utilise un disque image tir\u00e9 de l'Internet, d\u00e9marr\u00e9 \u00e0 partir d'un \u00e9mulateur d'un lecteur de disque, un WDrive. Chaque jeu est accompagn\u00e9 de son bo\u00eetier original et de son livret. L'exposition pr\u00e9sente aussi le d\u00e9veloppeur des jeux, Paradigm Creators, Inc., compos\u00e9 de Peter Lount et de Trouba Gossen. Des documents papiers seront laiss\u00e9s \u00e0 la vue des visiteurs, r\u00e9sum\u00e9 d'entrevue, annonces de promotions originales et extraits d'articles de magazines.\n\n2 chaises sont laiss\u00e9es \u00e0 la disposition des visiteurs pour qu'ils puissent s'asseoir et jouer. Du savon d\u00e9sinfectant se trouve \u00e0 c\u00f4t\u00e9 de chaque ordinateur (aucune mention n'est faite quant \u00e0 leur usage, les visiteurs l'utilisent s'il le souhaitent). Les stations se trouvent \u00e0 chaque extr\u00e9mit\u00e9. Des reproductions des jeux sont suspendues au dessus de la table.", "1": "Machines with historical predecessors to the current Macintosh GUI", "17": "Exposition d\u2019ordinateurs haut de gamme Apple du d\u00e9but des ann\u00e9es 90. Les puissantes stations de travail de la s\u00e9rie Macintosh II et Quadra sont expos\u00e9es avec quelques accessoires insolites ainsi que leurs \u00e9crans hors normes!\n\nExhibition of high-end Apple computers from the early 90s. The powerful Macintosh II and Quadra series workstations are on display with some unusual accessories and their extraordinary screens!", "43": "Venez essayer les premiers jeux \u00e9dit\u00e9s au Qu\u00e9bec sur un Apple II+\n\n\u00ab T\u00eatards \u00bb est le premier jeu vid\u00e9o con\u00e7u et \u00e9dit\u00e9 au Qu\u00e9bec en 1982, \u00ab Le jeu du ch\u00f4meur \u00bb a suivi peu apr\u00e8s chez le m\u00eame \u00e9diteur, Logidisque - les deux \u00e9taient des cas de \u00ab m\u00e9dia perdu \u00bb jusqu'\u00e0 r\u00e9cemment, mais ils ont \u00e9t\u00e9 archiv\u00e9s et vous pourrez les essayer (de m\u00eame que quelques autres titres en fran\u00e7ais) sur un Apple II+.\n\nJ'apporterai mon syst\u00e8me de lecteurs de disquettes Greaseweazle qui a permis la r\u00e9cup\u00e9ration de ces deux jeux.\n\nIl y aura aussi quelques articles de l'\u00e9poque et un reportage de Radio-Canada sur un ordinateur portable moderne.\n\nCome try the first video games published in Qu\u00e9bec on an Apple II+\n\n\"Baby Frogs\" is the first video game published in Qu\u00e9bec in 1982, \"Job Hunters\" came out shortly after with the same publisher, Logidisque - both games were cases of \"lost media\" until recently, but they've been recovered and you will be able to try them (along with a few other French-language titles) on an Apple II+.\n\nI'll be bringing my Greaseweazle diskette drive system that enabled the archival of both games.\n\nThere will be a few newspaper articles on display and a Radio-Canada video shown on a modern laptop computer.", "28": "Amiga \u2013 Still Making It Possible bridges the gap between classic 1980s hardware limitations and modern programming marvels. While mainstream history often treats vintage computers as rigid relics of a bygone era, this exhibit proves that the Amiga's creative pulse and technical evolution are stronger than ever. Step behind the curtain of modern indie retro-development with a live, side-by-side demonstration of pure tech-wizardry. On one side, explore the contemporary engineering pipeline using Visual Studio and modern cross-compilers. On the other side, watch that code come alive on authentic, original Amiga hardware. Visitors will get hands-on experience with two highly anticipated homebrew titles pushed to their absolute limits: Grind: An ambitious, high-performance first-person shooter bringing a smooth, Doom-like experience to classic Amiga chipsets. Hamulet: A jaw-dropping technical showcase that shatters the decades-old myth that Hold-and-Modify (HAM) mode is only suitable for static screens. See it achieve 8-directional scrolling with dozens of moving sprites in glorious, dithered 4,096-color depth at full frame rate. Whether you are a veteran demoscener, a software engineer, or a gaming enthusiast, come witness how passion and optimal coding keep the Amiga platform thriving today.", "8": "After a 30-year hiatus from retro and vintage computing, Aaron of One Maybe Two Retro is back at the workbench, rediscovering the machines that first sparked his passion. Follow his journey as he restores classic computer systems, explores modern hardware and software enhancements, and rebuilds the dream setups of the past for collectors, enthusiasts, and the retro computing community.\nFeatured on his YouTube channel (youtube.com/@1Maybe2Retro) Aaron's display showcases a curated collection of fully restored systems, innovative new hardware and software projects, and even the return of his original BBS from the early 1990s. Whether you're reliving old memories or discovering these iconic machines for the first time, there's something here for every retro computing fan.", "6": "CRT's PAL C64 demo corner with subwoofer, the way the 8580 SID was meant to be heard. Anonym/Padua will be showcasing Transmission64, an annual online C64 demo party streamed on Youtube and Twitch. Please stop by to talk about cross assembly programming or play with the Mega65. There might be some rare C64 models stored under the table for interested people. The Vectrex might return.", "25": "The Montreal Greek Times Unicorn (\"MGT Unicorn\") is a live \u201cOrigin Polyprotocol Publishing System\u201d that delivers current journalism, weather, radio and other information through technologies spanning more than four decades of networked computing.\n\nAt VCF Montr\u00e9al, visitors can use real vintage computers and period software: a Tandy 1000 SX, a NABU computer and an IBM PC 300XL running Windows 3.1. Explore Gopherspace, retrieve current Montreal news and Montreal weather through Telnet and Finger, access present-day news on the NABU network, and experience live streaming audio through RealAudio, the only live RealAudio still in operation in the world.\n\nThe exhibit demonstrates how supposedly obsolete network protocols and platforms can still function as practical publishing and information systems today. Montreal Greek Times content is published across multiple legacy services, allowing computers from very different eras to access live, current information in forms they understand.\n\nRetroNet is a hands-on journey through the pre-Web and early-Web Internet, with vintage computers doing what they were built to do: connect, communicate and retrieve information.", "4": "The NABU Network was a home consumer-based computer that was designed in Ottawa, Canada, in 1982. Software was delivered over the cable network at 6.3 Mbits/sec and included over 150 titles that were games, educational, informational, and business applications.", "23": "Discover the past, present, and future of the Texas Instruments 16-bit computing legacy at VCF Montreal v2.0. Presented by GaryOPA (also a guest speaker on Sunday at 9am), this exhibit celebrates the enduring hardware ecosystem of the TI-99/4A family by highlighting how modern engineering breathes new life into classic architecture. Attendees will experience three unique systems bridging the gap between 1981 and today.\n\nThe first system transforms the quintessential home computer experience. It features an original TI-99/4A console heavily enhanced with a JasonACT PiPEB sidecar and a Finalgrom99 cartridge for seamless software loading. The console is upgraded with a Pico9918 Video Display Processor for crystal-clear visuals and an MX-99 mechanical keyboard, offering an unparalleled tactile typing experience.\n\nThe second build is a robust 99/22 system pushing the platform to its limits. This powerhouse utilizes a Shift838 IO Card and a PEB backplane fully loaded with a MegaRam expansion, an 838FDC floppy controller, a classic Speech Adapter, and a CADD Video Card, demonstrating the incredible expandability of the 99-series environment.\n\nFinally, the exhibit leaps forward with a custom, modern ATX motherboard design for the Power Basic Cortex system. Powered by the venerable 16-bit TMS9995 CPU, this build illustrates how retro processors integrate into modern form factors for contemporary development. Join us to explore the thriving hardware scene keeping this platform alive!", "7": "Newton: known as Apple's most successful failure\u2013but was it? This is the story of how the Newton failed, but then went on to be one of the most unknown successes in Apple's repertoire at the time. With hands-on examples of the hardware, and signboards of the history with quotes and video clips, this interactive display highlights the fact that sometimes something that began as a colossal failure can actually lead to raging success.", "11": "Early British Personal Computing \u2013 Sinclair/Timex, Amstrad, Acorn/BBC, Enterprise\n\nCome see and follow early personal British computing from \u201cacross the pond\u201d.  Featured computers from:\n-\tSinclair/Timex\n-\tAmstrad/Schneider\n-\tAcorn/BBC\n-\tEnterprise", "3": "Presenting the Dynalogic Hyperion computer and the Nortel DisplayPhone", "13": "A new 8-bit game console and ecosystem designed for hobbyist tinkerers, hackers, and programmers to build, extend, and develop for. We'll be showing the console, accessories, and software developed both by the project creator and by the community.", "14": "Exposition du projet i-Mode Revival de Mizuki Mobile via le service cellulaire de seconde g\u00e9n\u00e9ration GSM et PDC, le but \u00e9tant de reconnecter les t\u00e9l\u00e9phones i-Mode (Keitai) pour avoir acc\u00e8s aux jeux multijoueurs et plus via un appareil physique. La conception du r\u00e9seau donne acc\u00e8s au service voix/SMS/donn\u00e9es, ce qui met en service des appareils GSM et PDC compatibles", "2": "Old computers have a hard time keeping with the current web. From expired HTTPS certificates to heavy Javascript usage, they either can\u2019t connect or can\u2019t render. It doesn\u2019t mean they are useless! Using early internet protocols (ex: Gopher), any machine with network access can reach information currently guarded by pesky modern Internet browsers. We are showing Warrens: A built from the ground up custom Gopher server that bridges the gap.", "46": "Assorted old hardware running old NetBSD.  Old hardware is good for more than just emotional satisfaction; it can do real work.", "24": "A HP 520C, the fastest desktop computer of 1982, will be on display with description of its capabilities and technologies used by HP. By opposition some personal computers, namely Timex 2068 and Sinclair QL will also be on display. The visitor will be able to check the speed difference and graphics capability between Home and Industrial. In addition some modern enhancements designed for the home computer on display will be presented in order to see if they can close the performance gap. (Short answer: no)", "45": "Before a \u201cportable computer\u201d meant something that fit in a backpack, manufacturers were trying to squeeze serious computing power, a keyboard, storage and a screen into one movable box.\n\nPlanet of Stuff presents a hands-on look at that transition through several unusual machines from the 1970s and early 1980s. The exhibit is anchored by the IBM 5100, introduced in 1975 and weighing about 55 pounds\u2014one of the earliest self-contained portable computers, years before the IBM PC.\n\nThe story then moves to Canadian innovation. The Hyperion, designed in Ottawa, was an early IBM PC-compatible luggable and reached the market ahead of the better-known Compaq Portable. The Commodore SuperPET adds another distinctly Canadian chapter: developed with the University of Waterloo, it combined the familiar PET with a second 6809 processor and Waterloo\u2019s programming environment.\n\nWhere practical, the machines will be operating so visitors can experience the technology rather than simply view static hardware. There may also be a few additional vintage-computing surprises joining the exhibit.\n\nThis exhibit will also be part of the early beginnings of Planet of Stuff TV, a planned YouTube channel exploring vintage computers, technology and other fascinating old things.", "32": "Des jeux de combat sur la Sega Saturn.", "26": "The F256K2 was made in Canada by Foenix Retro Systems and released in 2024. Its assets have been sold to wildBits Computing Company who will resume fabrication shortly. Its competitors in the retro space are the Commander X-16, the Mega65 and similar machines. It has a 65816 CPU but also a FPGA allowing it to become a 6809 and soon, using many other cores (x-16, amiga, etc). Multiple sound options include a pair of SN76489, a pair of SID, a Yamaha YMF262 OPL3, a MIDI sam2695 and a versatile mp3 playing VS1053b. It is a retro coder's fever dream! You will see programs designed by yours truly that tap into mostly the sound potential of the machine, including a MIDI in controller.\n\nOn the Mac side, I am developing a SDK called '1bit dream machine' meant to drive software sprites without flicker and using the Apple sound chip as well as the MIDI out plugged into the serial ports. The goal is to jumpstart game making on this favorite platform of mine.", "9": "Welcome to a live performance like no other: an ensemble where every single musician on stage is a vintage computer\u2014and MIDI doesn't exist yet.\nLong before unified industry standards like MIDI brought digital music gear together, every computer manufacturer spoke its own completely isolated language. Getting completely different legacy architectures to perform in tight sync wasn't just a challenge\u2014it was an engineering nightmare.\nThis setup brings these incompatible systems together into a fully synchronized digital band. Without a universal protocol to rely on, these machines communicate across a wild mix of non-standard interface protocols: custom bit-banging over raw RS-232 serial ports, hacked expansion slots, and bespoke handshake lines tailored specifically to bridge silicon that was never designed to talk to each other.\nInstead of sharing pre-recorded audio, a master system generates precise clock pulses and command streams down custom-built interfaces. Each computer in the dynamic lineup dynamically intercepts these non-standard signals, instantly translating raw timing cues and control bytes to trigger its own native sound hardware on the fly.\nWhat you\u2019re hearing isn't a static recording. It\u2019s a live, tight-wire jam session powered by custom code, hacked interfaces, and pure hardware synchronization. Step up and experience vintage silicon forced into harmony", "42": "long time youtuber Celgen studios and the MCGM have partnered to share a table of projects and artifacts. \n\nfrom grid laptops to obscure cdn computing artifacts and some rare Philips big iron relics.\n\ncome find out about the museum or meet thee Celgen studios in the flesh he does not byte\n\nhttps://www.youtube.com/@CelGenStudios\nhttps://mcgmuseum.ca Manitoba computer and gaming museum", "16": "D\u00e9but de la micro-informatique des ann\u00e9es 1970-1980", "31": "Experience the history and evolution of the adventure game, from the early days of text adventures and the groundbreaking arrival of graphic adventures to their modern reimaginings.\n\nThe exhibit explores the legacy of Colossal Cave Adventure and Mystery House\u2014two landmark titles that helped define interactive storytelling and the adventure-game genre. Mystery House, created by Ken and Roberta Williams in 1980, brought graphics to the adventure-game experience and helped launch Sierra On-Line.\n\nVisitors will be able to see vintage-computing material alongside modern demonstrations, including Mystery House 3D and the modern Colossal Cave, creating a direct comparison between the technology, artwork, design and storytelling of the original era and today.\n\nThe exhibit is presented by Marcus Mera of Guillotine Games, producer and artist on Colossal Cave and director/designer of Mystery House 3D. It celebrates the history of these influential games while demonstrating how ideas born during the earliest years of personal computing continue to inspire game development more than four decades later.", "30": "Ordinateurs du d\u00e9but des ann\u00e9es 80, incluant le Comterm MAX du gouvernement L\u00e9vesque pour nos \u00e9coles", "5": "Joystick adapter to connect all DB9 joystick and apparatus to USB as native HID devices such as Atari joysticks, C64, Amiga, Sega Saturn and more. Video Adapters for C64 to HDMI and Amiga to Components. All Retronic Design's products up for sale at the table.", "12": "An assortment of 90s and 2000s computers (Windows and Mac) interconnected via methods of the era - dial-up on an analog PBX, direct parallel and serial, 10BaseT Ethernet. Browse archived websites via an ISP hosted on Windows Server 2003 and listen to the modem sounds.", "21": "Joseph Weisbecker computers and devices.  A game he made in the 1950s called Think-A-Dot, the Electronic version called FLIP.  SpaceWar - A 10 chip TTL Game.  FRED - Recreation of early TTL Computer.  RCA 1802 computers from RCA, Netronics, Quest, ComX World Operations", "15": "Une pr\u00e9sentation de plusieurs machines IBM du d\u00e9but des ann\u00e9es 80 \u00e0 la fin des ann\u00e9es 90", "47": "Foulab, Montreal's Hackerspace, we curate dozens of vintage computers, including (but not limited to) a PDP-11/70, a Pyramid 90x, a couple of NeXT machines (a cube and a few slabs), a wall of Apple offerings, Tandys, Commodores, an IBM AS/400, some Sun machines, a bunch of '90s PCs, and other gems.\n\n\nThis exhibit will feature several sub-themes: a PDP-11/70, a section with the NeXT machines talking to each other in birth-of-the-web configuration , An anachronistic Demo of MeshCore running on a CoCo 3 (the MeshCoCo) and an NES (the MeshNES), and maybe some last-minute additions.", "18": "Display of vintage Atari home computers and their accessories. \n\nAlso, many games of the era were completely different between the various computers, so there will also be a C64 and Atari set up to play and compare the same games."}
 }
 ;
+// ON-SITE OVERRIDE (2026-10-16: the owner, on site, and the organisers' message of that day), until their next plan shows it.
+// The public entrance is the two pairs of double doors in the middle of the west wall (drawn below with the doors; not data),
+// and the organiser moves the consignment area and the Code Jam's four tables "to the left" (south, facing the west wall), out
+// of the way of those doors. Not on their plan V39 either: a check-in desk just inside the doors, on the north side (D.checkin,
+// [x, y, w, h] px, two tables end to end). Done here, on whatever D the page gets, so it holds both for ours (hall.json stays
+// their V39 data as is: Boothle and the vintage walk read it) and for the copy their floor-plan page embeds with its own
+// `var D`; the move only happens while their consignment zone still stands in front of the west doors (y 414-521 px), so a
+// plan of theirs that has moved it is left alone (D.onsite says what was done). Px: the west strip is x 108-222 (D.west);
+// south of the entrance doors the west wall has a single door (700-743) and a double door (829-867): the new layout keeps
+// the floor in front of both clear, which is why the Code Jam sits between them (y 736-829) rather than at the very end.
+(function (D) {
+  var z = D.storagezone, j = D.codezone, done = [];
+  function inR(r, q) { return q && r[0] >= q[0] && r[0] <= q[2] && r[1] >= q[1] && r[1] <= q[3]; }
+  function inC(c, q) { return q && c[6] === null && c[0] + c[2] / 2 >= q[0] && c[0] + c[2] / 2 <= q[2] && c[1] + c[3] / 2 >= q[1] && c[1] + c[3] / 2 <= q[3]; }
+  var sh = [], cs = [];
+  if (z && z[0] < D.west && z[1] < 521 && z[3] > 414 && j) {
+    sh = D.storage.filter(function (r) { return inR(r, z); }); cs = D.chairs.filter(function (c) { return inC(c, j); });   // (the Jam's chairs
+    // first: the cashier's chair moves into the Jam's old zone)
+  }
+  if (z && z[0] < D.west && z[1] < 521 && z[3] > 414 && j && sh.length && cs.length && D.cash) {   // (a plan without them: left as is)
+    // the consignment area, y 529-705: the six shelving units two by three (as on their plan, 60 in apart), under them the
+    // sales desk (west, its cashier's chair against the wall) and the free pile (east); a 36 in aisle along the wall
+    var y0 = Math.min.apply(null, sh.map(function (r) { return r[1]; }));
+    var dy = 535 - y0, cy = 663 - D.cash[1];
+    D.chairs.forEach(function (c) { if (inC(c, [D.cash[0] - 25, D.cash[1] - 5, D.cash[0] + D.cash[2] + 25, D.cash[1] + D.cash[3] + 5])) c[1] += cy; });
+    sh.forEach(function (r) { r[1] += dy; });
+    D.cash[1] += cy;
+    D.freepile = [sh.reduce(function (a, r) { return r[0] > a[0] ? r : a; })[0], 663, 30 / D.k, 60 / D.k];
+    // the Code Jam, y 736-829: its four tables in their square and their eight chairs, moved together, centred between the
+    // single door's 3 ft corridor (north) and the double door's (south, to the wall at 886)
+    var c0 = Math.min.apply(null, cs.map(function (c) { return c[1]; })),
+      c1 = Math.max.apply(null, cs.map(function (c) { return c[1] + c[3]; })), jy = (736 + 829) / 2 - (c0 + c1) / 2;
+    cs.forEach(function (c) { c[1] += jy; }); D.codetables.forEach(function (r) { if (inR(r, j)) r[1] += jy; });
+    D.storagezone = [z[0], 529, z[2], 705]; D.codezone = [j[0], 736, j[2], 829];
+    done.push("consignment and Code Jam moved south");
+  }
+  if (!D.checkin) { D.checkin = [148, 380, 120 / D.k, 30 / D.k]; done.push("check-in desk"); }   // (25 in clear of the load-in pile by the wall)
+  D.onsite = done.length ? "2026-10-16: " + done.join(", ") : "";
+})(D);
 var PLAN = [{"id":"osborne1","name":"Osborne 1","cat":"luggable","w":20.5,"d":11,"h":9,"x":-75.35,"z":0.25,"level":"table","stack":0,"body":"#c8b48c","scr":"green","kb":1},{"id":"hyperion","name":"Dynalogic Hyperion","cat":"luggable","w":18.3,"d":10,"h":8.8,"x":-43.65,"z":1.5,"level":"table","stack":0,"body":"#cfcbc2","scr":"amber","kb":1},{"id":"compaq1","name":"Compaq Portable","cat":"luggable","w":20,"d":14,"h":8.5,"x":-15.4,"z":-0.5,"level":"table","stack":0,"body":"#d8cfb8","scr":"green","kb":1},{"id":"kaypro2","name":"Kaypro 2","cat":"luggable","w":18,"d":13,"h":8,"x":16.3,"z":-0.5,"level":"table","stack":0,"body":"#7d8a96","scr":"green","kb":1},{"id":"ibm5155","name":"IBM Portable 5155","cat":"luggable","w":19.5,"d":14,"h":7.7,"x":44.5,"z":-0.5,"level":"table","stack":0,"body":"#d6d2c6","scr":"amber","kb":1},{"id":"kaypro1","name":"Kaypro 1","cat":"luggable","w":18,"d":13,"h":8,"x":76.25,"z":-0.5,"level":"table","stack":0,"body":"#7d8a96","scr":"green","kb":1},{"id":"souvenir","name":"ImageWriter (souvenirs)","cat":"printer","w":16.2,"d":11.8,"h":4.8,"x":76.5,"z":-3.5,"level":"shelf","stack":0,"body":"#d9cfb6","scr":null,"kb":0},{"id":"superpet","name":"Commodore SuperPET","cat":"desktop","w":16.5,"d":18.5,"h":14.2,"x":-78.15,"z":-5.5,"level":"shelf","stack":0,"body":"#e8e0c8","scr":null,"kb":0},{"id":"cbm8050","name":"Commodore 8050 drive","cat":"drive","w":15,"d":14.5,"h":7,"x":-59.8,"z":-5.5,"level":"shelf","stack":0,"body":"#e0d8c2","scr":null,"kb":0},{"id":"econopet","name":"EconoPET board (on display)","cat":"display","w":10,"d":5,"h":8.5,"x":-59.8,"z":-5.5,"level":"shelf","stack":7,"body":null,"scr":null,"kb":0},{"id":"compaq3","name":"Compaq Portable III","cat":"luggable","w":16.1,"d":7.5,"h":9.7,"x":-41.65,"z":-3.5,"level":"shelf","stack":0,"body":"#c9c2b0","scr":"plasma","kb":1},{"id":"macport","name":"Macintosh Portable","cat":"laptop","w":15.25,"d":14.43,"h":4.05,"x":-16.9,"z":-5.5,"level":"shelf","stack":0,"body":"#d7d3c7","scr":"lcd","kb":0},{"id":"bondwell200","name":"Bondwell B200","cat":"laptop","w":12.2,"d":12,"h":2.5,"x":1.35,"z":-5.5,"level":"shelf","stack":0,"body":"#d4d1c8","scr":"lcd","kb":0},{"id":"minisport","name":"Zenith MinisPort","cat":"laptop","w":12.5,"d":9.8,"h":1.29,"x":18.2,"z":-5.5,"level":"shelf","stack":0,"body":"#2e2f31","scr":"lcd","kb":0},{"id":"cbm286","name":"Commodore C286-LT","cat":"laptop","w":12.3,"d":10,"h":2,"x":41.05,"z":-5.5,"level":"shelf","stack":0,"body":"#cfcfca","scr":"bluelcd","kb":0},{"id":"bondwell310","name":"Bondwell B310SX","cat":"laptop","w":13,"d":12.5,"h":2.1,"x":57.6,"z":-5.5,"level":"shelf","stack":0,"body":"#2a2a2a","scr":"stn","kb":0},{"id":"compaq2","name":"Compaq Portable II (Dial-a-Museum)","cat":"luggable","w":17.7,"d":12,"h":7.5,"x":0,"z":-50,"level":"racktop","stack":0,"body":"#d2cab6","scr":"amber","kb":1},{"id":"phone1","name":"Phone 1007 (table 1)","cat":"phone","style":"m9216","w":7.5,"d":7.5,"h":3.5,"x":-58.95,"z":10.25,"level":"table","stack":0,"body":"#2a2a2a","scr":null,"kb":0},{"id":"phone2","name":"Phone 1008 (table 2)","cat":"phone","style":"m9216","w":7.5,"d":7.5,"h":3.5,"x":0.95,"z":10.25,"level":"table","stack":0,"body":"#2a2a2a","scr":null,"kb":0},{"id":"phone3","name":"Phone 1009 (table 3)","cat":"phone","style":"m9216","w":7.5,"d":7.5,"h":3.5,"x":60.75,"z":10.25,"level":"table","stack":0,"body":"#2a2a2a","scr":null,"kb":0},{"id":"logprinter","name":"ImageWriter (live log)","cat":"printer","w":16.2,"d":11.8,"h":4.8,"x":0,"z":-54,"level":"racktop","stack":7.5,"body":"#d9cfb6","scr":null,"kb":0},{"id":"cisco3745","name":"Cisco 3745 (CME)","cat":"network","w":17.25,"d":15,"h":5.25,"x":0,"z":-40,"level":"cart","stack":0,"body":null,"scr":null,"kb":0},{"id":"cisco2621","name":"Cisco 2621 (modem bank)","cat":"network","w":17.5,"d":11.8,"h":1.69,"x":0,"z":-40,"level":"cart","stack":8.75,"body":null,"scr":null,"kb":0},{"id":"vg248","name":"Cisco VG248","cat":"network","w":17.25,"d":16.75,"h":1.75,"x":0,"z":-40,"level":"cart","stack":10.5,"body":null,"scr":null,"kb":0},{"id":"breakout1","name":"RJ-11 breakout 1-24","cat":"network","w":17.3,"d":3,"h":1.75,"x":0,"z":-40,"level":"cart","stack":12.25,"body":null,"scr":null,"kb":0},{"id":"breakout2","name":"RJ-11 breakout 25-48","cat":"network","w":17.3,"d":3,"h":1.75,"x":0,"z":-40,"level":"cart","stack":14,"body":null,"scr":null,"kb":0},{"id":"switch","name":"Ethernet switch","cat":"network","w":17.3,"d":8,"h":1.75,"x":0,"z":-40,"level":"cart","stack":15.75,"body":null,"scr":null,"kb":0},{"id":"pdu","name":"Rack power strip","cat":"network","w":17.3,"d":6,"h":1.75,"x":0,"z":-40,"level":"cart","stack":17.5,"body":null,"scr":null,"kb":0},{"id":"pm25","name":"Livingston PortMaster PM-25","cat":"network","w":17,"d":12,"h":3.5,"x":0,"z":-40,"level":"cart","stack":5.25,"body":"#c8c6c0","scr":null,"kb":0}];
 var INFO = {"dial":"1019","items":{"superpet":{"name":"Commodore SuperPET","year":1981,"specs":"6502 + 6809 1 MHz · RAM 96K · CRT 12″ · 2 × 5¼″ 500K (8050)","about":"Before portables: the Commodore PET, the kind of all-in-one desktop the luggables grew out of.","about_fr":"Avant les portatifs : le Commodore PET, le genre d'ordinateur de bureau tout-en-un dont sont issus les transportables.","price":"1 995 $ US (annoncé · announced)","canada":"Designed with the University of Waterloo, Ontario.","canada_fr":"Conçu avec l’Université de Waterloo (Ontario).","clip":"9"},"osborne1":{"name":"Osborne 1","year":1981,"specs":"Z80 4 MHz · RAM 64K · CRT 5″ · 2 × 5¼″ 91K","about":"The first commercially successful portable computer.","about_fr":"Le premier ordinateur portatif à connaître un succès commercial.","price":"1 795 $ US","weight":"24.5","clip":"1"},"kaypro2":{"name":"Kaypro 2","year":1984,"specs":"Z80A 4 MHz · RAM 64K · CRT 9″ · 2 × 5¼″ 191K","about":"The 1984 Kaypro 2: a faster Z80, half-height drives, and CP/M in a metal case.","about_fr":"Le Kaypro 2 de 1984 : un Z80 plus rapide, des lecteurs demi-hauteur et CP/M dans un boîtier de métal.","price":"1 295 $ US","weight":"26 ?","clip":"2"},"kaypro1":{"name":"Kaypro 1","year":1985,"specs":"Z80A 4 MHz · RAM 64K · CRT 9″ · 2 × 5¼″ 390K","about":"The last CP/M Kaypro: $995 in 1985.","about_fr":"Le dernier Kaypro sous CP/M : 995 $ en 1985.","price":"995 $ US","weight":"26 ?","clip":"2"},"hyperion":{"name":"Dynalogic Hyperion","year":1983,"specs":"8088 4.77 MHz · RAM 256K · CRT 7″ · 2 × 5¼″ 320K","about":"An early IBM PC-compatible portable, designed and built in Ottawa.","about_fr":"L'un des premiers portatifs compatibles IBM PC, conçu et fabriqué à Ottawa.","price":"4 995 $ (annoncé · announced 1982 — 1983 : 3 195 $ US · 1984 : 4 950 $ CA)","weight":"20-21","canada":"Sold by Bytec, another Ottawa company.","canada_fr":"Distribué par Bytec, une autre entreprise d’Ottawa.","clip":"3"},"compaq1":{"name":"Compaq Portable","year":1983,"specs":"8088 4.77 MHz · RAM 128K · CRT 9″ · 2 × 5¼″ 360K","about":"The portable that made 'IBM compatible' mean something.","about_fr":"Le portatif qui a donné tout son sens à « compatible IBM ».","price":"2 995 $ US","weight":"28","clip":"4"},"ibm5155":{"name":"IBM Portable PC","year":1984,"specs":"8088 4.77 MHz · RAM 256K · CRT 9″ · 2 × 5¼″ 360K","about":"IBM's answer to the Compaq: an XT in a suitcase.","about_fr":"La réponse d'IBM au Compaq : un XT dans une valise.","price":"2 795 $ US","weight":"30","clip":"4"},"compaq3":{"name":"Compaq Portable III","year":1987,"specs":"80286 12 MHz · RAM 640K · Plasma 10″ · 1 × 5¼″ 1.2 MB + HD 40 MB","about":"A 12 MHz 286 with an amber gas-plasma screen.","about_fr":"Un 286 à 12 MHz avec un écran plasma ambre.","price":"3 999–5 799 $ US","weight":"18-20","clip":"5"},"macport":{"name":"Macintosh Portable","year":1989,"specs":"68000 16 MHz · RAM 1 MB · LCD 9.8″ · 1 × 3½″ 1.44 MB","about":"Apple's first battery-powered Macintosh.","about_fr":"Le premier Macintosh fonctionnant sur batterie.","price":"5 799 $ US","weight":"15.8","clip":"6"},"minisport":{"name":"Zenith MinisPort","year":1989,"specs":"80C88 8 MHz · RAM 1 MB · LCD CGA · 1 × 2″ 720K","about":"A 6-pound laptop with DOS in ROM and 2-inch floppies.","about_fr":"Un portatif de 6 livres avec DOS en ROM et des disquettes de 2 pouces.","price":"1 999 $ US","weight":"5.9","clip":"7"},"bondwell200":{"name":"Bondwell B200","year":1989,"specs":"80C88 8 MHz · RAM 640K · LCD 10.5″ · 2 × 3½″ 720K","about":"An XT-class laptop from Bondwell of Hong Kong.","about_fr":"Un portatif de classe XT signé Bondwell, de Hong Kong.","price":"995 $ US","weight":"7-8","clip":"7"},"bondwell310":{"name":"Bondwell B310SX","year":1991,"specs":"386SX 16 MHz · RAM 1 MB · LCD VGA · 1 × 3½″ 1.44 MB + HD 80 MB","about":"A 386SX laptop from Bondwell.","about_fr":"Un portatif 386SX de Bondwell.","price":"3 195 $ US","weight":"8.5","clip":"8"},"cbm286":{"name":"Commodore C286-LT","year":1990,"specs":"80C286 12.5 MHz · RAM 1 MB · LCD 9.75″ · 1 × 3½″ 1.44 MB + HD 20 MB","about":"Yes, Commodore made PC-compatible laptops.","about_fr":"Eh oui, Commodore a fait des portatifs compatibles PC.","price":"2 999 $ US","weight":"?","clip":"8"},"guest":{"name":"Guest port","year":0,"about":"Your own computer, on our network.","about_fr":"Votre propre ordinateur, sur notre réseau."},"compaq2":{"name":"Compaq Portable II","year":1986,"specs":"80286 8 MHz · RAM 256K · CRT 9″ · 1 × 5¼″ 360K","about":"Compaq's second portable: a 286 in a smaller, lighter case than the original.","about_fr":"Le deuxième portatif de Compaq : un 286 dans un boîtier plus petit et plus léger que l'original.","price":"3 499–4 799 $ US","weight":"23.6","clip":"5"},"econopet":{"name":"EconoPET 40/8096","kind":"gear","about":"An open-source replacement mainboard for Commodore PET and CBM computers, like the SuperPET beside it. It runs the machine and emulates its disk drives.","about_fr":"Une carte mère libre qui remplace celle des Commodore PET et CBM, comme le SuperPET à côté. Elle fait tourner la machine et émule ses lecteurs de disquettes.","credit":"Designed by Daniel Lehenbauer","url":"https://dlehenbauer.github.io/econopet/40-8096-A.html"},"cbm8050":{"name":"Commodore 8050 drive","kind":"gear","specs":"2 × 5¼″ 500K · IEEE-488","about":"The SuperPET's dual floppy drive.","about_fr":"Le double lecteur de disquettes du SuperPET."},"souvenir":{"name":"Apple ImageWriter (souvenirs)","year":1983,"kind":"gear","about":"Prints a souvenir page from the guest book.","about_fr":"Imprime une page souvenir du livre d'or."},"logprinter":{"name":"Apple ImageWriter (live log)","year":1983,"kind":"gear","about":"Prints every guest book entry as it arrives.","about_fr":"Imprime chaque entrée du livre d'or à son arrivée."},"cisco3745":{"name":"Cisco 3745 (CallManager Express)","kind":"gear","about":"The phone switch: every extension on the booth rings through it.","about_fr":"Le commutateur téléphonique : chaque poste du kiosque passe par lui."},"cisco2621":{"name":"Cisco 2621 (modem bank)","kind":"gear","about":"16 analog modems (NM-16AM) that answer the vintage machines' calls.","about_fr":"16 modems analogiques (NM-16AM) qui répondent aux appels des machines d'époque."},"vg248":{"name":"Cisco VG248","kind":"gear","about":"48 analog phone lines for the phones and the machines' modems.","about_fr":"48 lignes analogiques pour les téléphones et les modems des machines."},"pm25":{"name":"Livingston PortMaster PM-25","kind":"gear","about":"Serial ports for the machines wired straight in, and the printers.","about_fr":"Ports série pour les machines branchées en direct et les imprimantes."},"switch":{"name":"Ethernet switch","kind":"gear","about":"Ties the rack together.","about_fr":"Relie le rack."},"pdu":{"name":"Rack power strip","kind":"gear","about":"One plug to the wall for the whole rack.","about_fr":"Une seule prise murale pour tout le rack."},"breakout1":{"name":"RJ-11 breakout 1-24","kind":"gear","about":"Phone jacks for VG248 lines 1-24.","about_fr":"Prises téléphoniques des lignes 1-24 du VG248."},"breakout2":{"name":"RJ-11 breakout 25-48","kind":"gear","about":"Phone jacks for VG248 lines 25-48.","about_fr":"Prises téléphoniques des lignes 25-48 du VG248."},"phone1":{"name":"Nortel Meridian M9216 · ext. 1007","kind":"gear","about":"Pick it up and dial 1019 for Dial-a-Museum, or 1024 to hear a modem.","about_fr":"Décrochez et composez le 1019 pour le Musée au bout du fil, ou le 1024 pour entendre un modem.","canada":"Aastra, Concord (Ontario)","canada_fr":""},"phone2":{"name":"Nortel Meridian M9216 · ext. 1008","kind":"gear","about":"Pick it up and dial 1019 for Dial-a-Museum, or 1024 to hear a modem.","about_fr":"Décrochez et composez le 1019 pour le Musée au bout du fil, ou le 1024 pour entendre un modem.","canada":"Aastra, Concord (Ontario)","canada_fr":""},"phone3":{"name":"Nortel Meridian M9216 · ext. 1009","kind":"gear","about":"Pick it up and dial 1019 for Dial-a-Museum, or 1024 to hear a modem.","about_fr":"Décrochez et composez le 1019 pour le Musée au bout du fil, ou le 1024 pour entendre un modem.","canada":"Aastra, Concord (Ontario)","canada_fr":""}}} || { dial: "1019", items: {} };   // machine cards (layout/machines-json.py)
 // HOOK: optional callbacks the game (layout/game/*.js) fills in; the walk-through works without them.
@@ -1617,12 +1658,17 @@ function wallPart(side, a0, a1, y0, y1) {
 function wall(x0, z0, x1, z1) { solid(x0 - 3, z0 - 3, x1 + 3, z1 + 3); }   // collisions only (the faces: wallPart)
 wall(rx0, rz0 - 6, rx1, rz0); wallPart("N", rx0, rx1, 0, WALL);                    // north
 wall(rx0, rz1, rx1, rz1 + 6); wallPart("S", rx0, rx1, 0, WALL);                    // south
-wall(rx0 - 6, rz0, rx0, rz1); wallPart("W", rz0, rz1, 0, WALL);                    // west (locked doors)
-// east: the public entrance. The V18 drawing showed an opening mid-wall (eOpen1, "corridor"); on site (the owner's photos) it is
-// the stowed gym divider's tall housing between the two bleacher banks: solid wall, not a way out (drawn with the bleachers).
+// west: the public entrance (the owner on site, 2026-10-16): the two pairs of double doors mid-wall, open, onto the cross-aisle;
+// a vestibule behind them (drawn with the doors). The wall is solid elsewhere (the other west doors are drawn closed).
+var wDoor = [[Z(414), Z(448)], [Z(482), Z(521)]];
+wall(rx0 - 6, rz0, rx0, wDoor[0][0]); wall(rx0 - 6, wDoor[0][1], rx0, wDoor[1][0]); wall(rx0 - 6, wDoor[1][1], rx0, rz1);
+wallPart("W", rz0, wDoor[0][0], 0, WALL); wallPart("W", wDoor[0][0], wDoor[0][1], 96, WALL); wallPart("W", wDoor[0][1], wDoor[1][0], 0, WALL);
+wallPart("W", wDoor[1][0], wDoor[1][1], 96, WALL); wallPart("W", wDoor[1][1], rz1, 0, WALL);
+// east: the V18 drawing showed an opening mid-wall (eOpen1, "corridor"); on site (the owner's photos) it is the stowed gym
+// divider's tall housing between the two bleacher banks: solid wall, not a way out (drawn with the bleachers). The double door
+// at the south end (eDoor, under a grey canopy) was our public entrance until 2026-10-16: an ordinary exit, closed.
 var eOpen1 = [Z(436), Z(512)], eDoor = [Z(840), Z(872)];
-wall(rx1, rz0, rx1 + 6, eDoor[0]); wall(rx1, eDoor[1], rx1 + 6, rz1);
-wallPart("E", rz0, eDoor[0], 0, WALL); wallPart("E", eDoor[0], eDoor[1], 96, WALL); wallPart("E", eDoor[1], rz1, 0, WALL);
+wall(rx1, rz0, rx1 + 6, rz1); wallPart("E", rz0, rz1, 0, WALL);
 // the roof deck: black corrugated steel, ribs north-south, seen from below only (from above it is see-through too)
 var deckTex = new THREE.Texture(); deckTex.wrapS = deckTex.wrapT = THREE.RepeatWrapping; deckTex.anisotropy = MAXANI;
 deckTex.repeat.set((rx1 - rx0) / 24, (rz1 - rz0) / 24);
@@ -2340,7 +2386,7 @@ ATEX.needsUpdate = true;
 // the room's props (doors, signs, bleachers, consignment shelves...) are built further down with the same helpers and materials
 WX = { vb: vb, vc: vc, pl: pl, cell: cell, tx: tx, sub: sub, UP: UP, PV: PV, PA: PA, PG: PG, ATEX: ATEX, gbox: gbox, kbd: kbd, comp: comp, aio: aio,
   tag: tag, bin: bin, dbox: dbox, board: board, drv: drv, disks: disks, cart: cart, sign: sign, css: css, wrap: wrap, SANS: SANS, MONO: MONO, FLAGS: FLAGS,
-  colGeo: colGeo, VG: VG, CYL8: CYL8, C: C, scr: scr, keyTop: keyTop, art: art, ACX: ACX, AS: AS };
+  colGeo: colGeo, VG: VG, CYL8: CYL8, C: C, scr: scr, keyTop: keyTop, art: art, ACX: ACX, AS: AS, lap: lap };
 })();
 // the speakers' corner: a laptop and a row of their books on each table, facing the aisle
 Object.keys(CORNER).forEach(function (k) {
@@ -2673,11 +2719,12 @@ D.arcade.forEach(function (a) {
 });
 // the consignment area ("Consigne", the plan's storage zone on the west wall: cvcfed.org/vcf-montreal-2-0/consigne-vente-en-depot/):
 // attendees' hardware, software and memorabilia on steel shelving with price tags, a point-of-sale desk (the plan's V piece),
-// and the free pile (a table of free items; not on the plan: placed here, in line with the east row of shelves, 24 in south
-// of it: out of the shelf aisle, the west doors and the hall's aisle). Generic shapes and plain titles: no brands or logos.
-// The two C pieces outside the zone (by booth 47) are an exhibitor's shelves: plain units.
+// and the free pile (a table of free items; not on the plan: D.freepile from the on-site override (see D), else in line with
+// the east row of shelves, 24 in south of it: out of the shelf aisle, the west doors and the hall's aisle). Generic shapes and
+// plain titles: no brands or logos. The two C pieces outside the zone (by booth 47) are an exhibitor's shelves: plain units.
 function inStoreZone(r) { var z = D.storagezone; return z && r[0] >= z[0] && r[0] <= z[2] && r[1] >= z[1] && r[1] <= z[3]; }
 var FREEPILE = (function () {                                 // [x, y, w, h] px, like the plan's pieces
+  if (D.freepile) return D.freepile;
   var sh = D.storage.filter(inStoreZone); if (!sh.length) return null;
   var e = sh.reduce(function (a, r) { return r[0] > a[0] ? r : a; }), y1 = Math.max.apply(null, sh.map(function (r) { return r[1] + r[3]; }));
   return [e[0], y1 + 24 / K, 30 / K, 60 / K];
@@ -2752,6 +2799,33 @@ var FREEPILE = (function () {                                 // [x, y, w, h] px
   part(CYL, M(0xd23b2f), 0.45, 0.3, 0.45, cx + 3.1, 47, cz + 4.05, scene).rotation.x = Math.PI / 2;   // the red "on" light
   part(CYL, M(0xf2efe6), 1.5, 7, 1.5, cx + 7, 41.5, cz + 2, scene);           // paper cups
   part(CYL, M(0xf2efe6), 1.5, 4, 1.5, cx + 7, 40, cz + 6, scene); })();
+// the check-in desk (D.checkin, from the on-site override: not on the organisers' plan): just inside the public entrance on the
+// north side, out of the doors' way, its front to the south where people come in. Two banquet tables end to end (black skirts,
+// like the booths), the volunteers' chairs behind them: two laptops (the registration list), a badge printer and its fresh
+// badges, a tray of lanyards, a cash box and a card reader, an ACCUEIL / CHECK-IN card on the table and a banner on the skirt.
+// CHECKIN: { x, z (its centre, in), front (the z of its front edge), box }: the game's check-in spot (showrunner.js) reads it.
+var CHECKIN = null;
+(function () {
+  var r = D.checkin; if (!r) return;
+  var x0 = X(r[0]), z0 = Z(r[1]), x1 = X(r[0] + r[2]), z1 = Z(r[1] + r[3]), cx = (x0 + x1) / 2, cz = (z0 + z1) / 2, n = Math.max(1, Math.round((x1 - x0) / 60)), i;
+  for (i = 0; i < n; i++) { var tx = x0 + (x1 - x0) * (i + 0.5) / n; table(tx, cz, "x"); chair(tx + 20, z0 - 13, 0, 1).n = "checkin"; }   // (east: the load-in pile is by the wall)
+  var W_ = WX, vb = W_.vb, g = new THREE.Group(); g.position.set(cx, TH, cz); scene.add(g);   // local +z: the front (south)
+  var L = x1 - x0;
+  W_.lap(W_.sub(g, -L / 4 + 4, 0, -3, 0, Math.PI), 0, 0, 13, 9.5, 0x2a2b2e, "win", 0x1a1a1a);   // the laptops face the volunteers
+  W_.lap(W_.sub(g, L / 4 + 4, 0, -3, 0, Math.PI), 0, 0, 13, 9.5, 0x3a3b3e, "dos", 0x1a1a1a);
+  vb(g, 7.5, 6, 9, 0xd9dadc, -L / 4 - 12, 0, -1); vb(g, 5.6, 0.6, 1.2, 0x2a2b2e, -L / 4 - 12, 3.6, 3.6);   // the badge printer, its slot
+  for (i = 0; i < 4; i++) { vb(g, 3.4, 0.08, 2.2, 0xfbfaf6, -L / 4 - 12 + (i - 1.5) * 0.3, 0.05 + i * 0.09, 6 + i * 0.25); }   // fresh badges
+  vb(g, 3.4, 0.1, 0.7, 0xb3342f, -L / 4 - 12, 0.45, 5.5);
+  W_.bin(g, -3, 4, 12, 8, 0x2a2b2e, [0xb3342f, 0x1d1d22, 0x2a62c4]);                          // a tray of lanyards
+  for (i = 0; i < 6; i++) W_.vc(g, 0.25, 5, [0xb3342f, 0x1d1d22][i % 2], -7 + i * 1.6, -1, 15.3);   // a few hanging over the front edge
+  vb(g, 11, 4, 8, 0x5a6066, L / 4 - 14, 0, 2); vb(g, 3, 1, 5, 0x2a2a2c, L / 4 - 24, 0, 5);   // a cash box, the card reader
+  W_.sign(g, L / 4 + 4, 9, "ACCUEIL", "CHECK-IN · badges", 15, "#b3342f", "#ffffff");
+  W_.pl(g, W_.cell("checkin", 256, 64, function (c, w, h) { c.fillStyle = "#b3342f"; c.fillRect(0, 0, w, h);
+    W_.tx(c, "ACCUEIL · CHECK-IN", w / 2, h / 2 + 1, 30, "#fff", "center", W_.SANS, w - 16); }), 44, 11, 0, -TH + 18, 15.2, 0, false);   // the banner on the skirt
+  var box = new THREE.Box3(new THREE.Vector3(x0, 0, z0), new THREE.Vector3(x1, TH + 12, z1));
+  CHECKIN = { x: cx, z: cz, front: z1, box: box };
+  PICKS.push({ box: box, kind: "place", id: "checkin", hl: box });
+})();
 
 // ---------------------------------------------------------------- booth 29: Land of the Portables
 // Ported from the booth view (booth-3d.html): its builders, turned to face the west aisle.
@@ -3337,8 +3411,8 @@ var DET29 = {   // fractions of the front face from its bottom-left; checked aga
 })();
 
 // ---------------------------------------------------------------- doors, signs and the room's fittings
-// Doors read off the V18 plan's wall drawing (the photos agree: five on the west wall, the two pairs in the middle by the
-// consignment area). They look as on site: black steel, a narrow window in each leaf, push plates, steel kick plates, a black
+// Doors read off the V18 plan's wall drawing (the photos agree: five on the west wall, the two pairs in the middle: the public
+// entrance, owner on site, 2026-10-16). They look as on site: black steel, a narrow window in each leaf, push plates, steel kick plates, a black
 // frame; over the corridor doors the real red-on-white SORTIE sign in its wire guard. The pair marked "Locked doors" keeps
 // a LOCKED sign, the public entrance its sign. Everything here is drawn with the booth wares' helpers and materials (WX:
 // PV / PA / PG), so the whole room costs no extra draw call; the ceiling is one group of its own (below).
@@ -3492,14 +3566,6 @@ var ROOMW = {};
     solid(rx1 - 32, b[0] - 18, rx1, b[1] + 18);
   });
   for (var i = 0; i < 6; i++) vb(E, 34, 50, 1, i % 2 ? 0x2357b8 : 0x1e4fae, la("E", rz1 - 150 + (i % 3) * 40), i < 3 ? 236 : 176, 1);   // championship banners: plain
-  // the public entrance (open): a short corridor behind it, so the wall doesn't open onto nothing; its leaves stand open into it
-  (function (o) {
-    var L = o[1] - o[0], m = la("E", (o[0] + o[1]) / 2);
-    vb(E, L + 8, 96, 2, 0x5c5f63, m, 0, -60); vb(E, L + 8, 2, 60, 0x3a3c40, m, 96, -30);
-    vb(E, 2, 96, 60, 0x8e9196, m - L / 2 - 1, 0, -30); vb(E, 2, 96, 60, 0x8e9196, m + L / 2 + 1, 0, -30);
-    vb(E, 1.6, 84, L / 2 - 1, 0x26272a, m - L / 2 + 1.5, 0, -L / 4); vb(E, 1.6, 84, L / 2 - 1, 0x26272a, m + L / 2 - 1.5, 0, -L / 4);
-    solid(rx1 + 56, o[0] - 6, rx1 + 70, o[1] + 6); solid(rx1, o[0] - 8, rx1 + 62, o[0] - 1); solid(rx1, o[1] + 1, rx1 + 62, o[1] + 8);   // its walls hold
-  })(eDoor);
   // the stowed gym divider (owner: not a door): a tall tan housing from the floor nearly to the deck, between the bleachers
   var dm = la("E", (eOpen1[0] + eOpen1[1]) / 2);
   vb(E, 46, WALL - 30, 10, 0xb8923e, dm, 0, 5); vb(E, 48, 6, 11, 0x8a6a2a, dm, WALL - 36, 5.5);
@@ -3522,6 +3588,26 @@ var ROOMW = {};
   vb(Wg, 304, 3, 4, 0x2a2c30, la("W", rz1 - 200), 148, 2);
   var cz = (Z(448) + Z(482)) / 2;
   vb(Wg, 22, 70, 1.5, 0x9a6a2e, la("W", cz), 0, 0.8); vb(Wg, 22, 18, 1.5, 0xe08f2e, la("W", cz), 70, 0.8);
+  // the public entrance: both pairs stand open into one vestibule behind the wall (8 ft deep, a dropped ceiling, a back wall
+  // and two side walls, all solid), so the doors don't open onto nothing; a walk-off mat inside each pair. Local z < 0 is
+  // outside the room. (The wall's face is one-sided: from the vestibule the column between the pairs gets its own back.)
+  (function () {
+    var a = wDoor[0][0], b = wDoor[1][1], L = b - a, m = la("W", (a + b) / 2), DP = 96, VX = rx0 - DP;
+    vb(Wg, L + 8, 96, 2, 0x5c5f63, m, 0, -DP);                                            // the back wall
+    vb(Wg, L + 8, 2, DP, 0x3a3c40, m, 96, -DP / 2);                                       // the ceiling
+    vb(Wg, 2, 96, DP, 0x8e9196, la("W", a) + 1, 0, -DP / 2); vb(Wg, 2, 96, DP, 0x8e9196, la("W", b) - 1, 0, -DP / 2);   // the side walls
+    vb(Wg, L, 0.4, DP, 0x6b6e70, m, 0.1, -DP / 2);                                         // a grey terrazzo floor
+    vb(Wg, wDoor[1][0] - wDoor[0][1], 96, 2, 0x8e9196, la("W", (wDoor[0][1] + wDoor[1][0]) / 2), 0, -1.5);   // the column's back
+    wDoor.forEach(function (o) {
+      var w = o[1] - o[0], c = la("W", (o[0] + o[1]) / 2), lo = la("W", o[0]), hi = la("W", o[1]);
+      vb(Wg, 2.5, 96, 3, 0x161718, lo + 1.25, 0, -0.5); vb(Wg, 2.5, 96, 3, 0x161718, hi - 1.25, 0, -0.5); vb(Wg, w + 5, 3, 3, 0x161718, c, 93, -0.5);   // the frame
+      vb(Wg, 1.6, 84, w / 2 - 1, 0x26272a, lo - 2, 0, -w / 4 - 1); vb(Wg, 1.6, 84, w / 2 - 1, 0x26272a, hi + 2, 0, -w / 4 - 1);   // the leaves, swung out
+      vb(Wg, w - 6, 0.5, 40, 0x2e3134, c, 0.3, 22);                                      // the walk-off mat, inside
+    });
+    vb(Wg, 60, 30, 1.5, 0x26272a, m, 50, -DP + 1.2);                                       // a notice board on the back wall
+    solid(VX - 12, a - 8, VX + 2, b + 8);                                                  // its walls hold
+    solid(VX, a - 8, rx0, a - 1); solid(VX, b + 1, rx0, b + 8);
+  })();
 
   // ---- north wall: scoreboard, three flags, the dark blue wall pads, a whiteboard
   var Ng = wg("N");
@@ -3567,7 +3653,7 @@ var ROOMW = {};
   vb(Sg, 8, 126, 12, 0x232427, ld - 52, 0, 6); vb(Sg, 8, 126, 12, 0x232427, ld + 52, 0, 6); vb(Sg, 112, 10, 12, 0x232427, ld, 116, 6);
   pl(Sg, cell("rollup", 96, 96, function (c, w, h) { c.fillStyle = "#e6e7e4"; c.fillRect(0, 0, w, h); c.fillStyle = "#c6c9c8"; for (var y = 19; y < h; y += 19) c.fillRect(0, y, w, 1.5);
     c.fillStyle = "#3a3c40"; c.beginPath(); c.arc(w * 0.62, h * 0.66, 3, 0, 7); c.fill(); c.fillStyle = "#b8bcbc"; c.fillRect(0, h - 3, w, 3); }), 96, 116, ld, 58, 0.6);
-  var dd = sub(Sg, la("S", RCX + 528), 0, 0);                  // (clear of the east wall and the entrance canopy)
+  var dd = sub(Sg, la("S", RCX + 528), 0, 0);                  // (clear of the east wall and the east door's canopy)
   pl(dd, cell("rd:2", 88, 120, leaves(2)), 70, 84, 0, 42, 0.5);
   vb(dd, 2.5, 87, 1.6, 0x161718, -36, 0, 0.4); vb(dd, 2.5, 87, 1.6, 0x161718, 36, 0, 0.4);
   vb(dd, 1, 1.2, 2, 0xb8bcc0, -12, 38, 1.5); vb(dd, 1, 1.2, 2, 0xb8bcc0, 12, 38, 1.5); vb(dd, 66, 1.4, 1.4, 0xb8bcc0, 0, 38, 2.2);   // the push bars
@@ -3578,10 +3664,10 @@ var ROOMW = {};
 })();
 var door = ROOMW.door;
 door("E", 78, 110, "exit");                       // east wall, north corner: double doors
-door("E", 840, 872, "entrance", true);            // the public entrance (open; also an exit)
+door("E", 840, 872, "exit");                      // east wall, south end: a double door under its canopy (the public entrance until 2026-10-16)
 door("E", 824, 838, "exit", true);
 door("W", 264, 307, "locked", false, true);       // west: "Locked doors" beside D 114 (a single door, owner 2026-10-16)
-door("W", 414, 448, "exit"); door("W", 482, 521, "exit");     // the two pairs by the consignment area (the photos' double doors)
+door("W", 414, 448, "entrance", true); door("W", 482, 521, "entrance", true);   // the public entrance: the two pairs mid-wall (owner on site, 2026-10-16), open
 door("W", 700, 743, "exit", false, true); door("W", 829, 867, "exit");     // near rooms 123 and 124 (700: a single door beside the pairs, owner 2026-10-16)
 door("S", 115, 145, "glass");                     // south wall, west corner: a glazed screen into the next room, not a door (owner's photo, 2026-10-16)
 
@@ -3672,7 +3758,8 @@ function buildLabels() {
   m = zoneMid(D.storagezone); label(T("storage"), T("storageSub"), m[0], 96, m[1]);
   m = zoneMid(D.codezone); label(T("jam"), null, m[0], 96, m[1]);
   m = zoneMid(D.cross); label(T("cross") + " " + ft((Z(D.cross[3]) - Z(D.cross[1])) / 12), null, m[0], 110, m[1]);
-  label(T("entrance"), null, X(880), 100, Z(856));
+  label(T("entrance"), null, X(116), 112, Z(465));
+  if (CHECKIN) label(T("checkin"), T("checkinSub"), CHECKIN.x, 74, CHECKIN.z);
 }
 LANG_HOOKS.push(buildLabels);                        // (built by applyLang at load: once)
 if (document.fonts && document.fonts.ready) document.fonts.ready.then(function () { if (lblFonts() !== lblMetrics) buildLabels(); });
@@ -4228,7 +4315,7 @@ function before(k, turn, text, sub, dz) {
   return b && { x: aisleBefore(b), z: b.cz + (dz || 0), yaw: (b.face === "W" ? -Math.PI / 2 : Math.PI / 2) + (turn || 0), text: text, sub: sub };
 }
 var PLACES = {
-  entrance: { x: X(870), z: Z(856), yaw: Math.PI / 2 - 0.3, text: "Public entrance", sub: "Walk in; the islands are ahead and to the right" },
+  entrance: { x: X(117), z: Z(465), yaw: -Math.PI / 2, text: "Public entrance", sub: "Check-in on your left; the islands straight ahead" },   // just inside the west doors
   ours: before("29", 0, "29 · Land of the Portables", (window.SITE_BUILD ? "" : "Our booth: ") + "3 tables of luggables and laptops, the network rack behind"),
   lan: before("10", -0.2, "10 · Griefenbunker LAN Party", "Two tables of LAN PCs with LCDs, keyboards and gamepads")
 };
@@ -4252,7 +4339,7 @@ function go(name) {
   if (name === "view") {                                // fly around: a three-quarter view of the whole hall from above the
     var e = PLACES.entrance;                            // public entrance (the site build's start, like the organisers' page);
     pos.set(e.x, EYE, e.z); yaw = e.yaw; pitch = -0.06; // Walk starts at the entrance
-    setMode("fly"); camera.position.set(104 * 12, 58 * 12, 116 * 12); orbit.target.set(50 * 12, 0, 48 * 12); orbit.update(); return;
+    setMode("fly"); camera.position.set(-26 * 12, 62 * 12, 49 * 12); orbit.target.set(56 * 12, 0, 49 * 12); orbit.update(); return;   // (from the west, over the entrance)
   }
   var p = PLACES[name]; pos.set(p.x, EYE, p.z); yaw = p.yaw; pitch = -0.06;
   if (mode === "fly") setMode("walk");
@@ -4522,10 +4609,15 @@ function updateWhere() {
   else if (cd < 140 && cd < bd) { txt = bc + " · " + CORNER[bc].name; sub = T("corner"); }
   else if (bd < 110) { txt = best + " · " + D.names[best]; nt = booths[best].tables.length;
     sub = nt + " " + T(nt > 1 ? "tables" : "table") + (best === "29" && !(window.G && G.state && G.state.on && G.state.who !== "29") ? T("us") : boothInfo(best).corner ? T("inCorner") : ""); }
+  else if (CHECKIN && Math.abs(p.x - CHECKIN.x) < 90 && Math.abs(p.z - CHECKIN.z) < 50) { txt = T("checkin"); sub = T("checkinSub"); }
+  else if (p.x < X(D.west) && p.z > wDoor[0][0] - 20 && p.z < wDoor[1][1] + 20) { txt = T("entrance"); sub = T("entranceSub"); }
+  else if (inZone(p, D.storagezone)) { txt = T("storage"); sub = T("storageSub"); }
+  else if (inZone(p, D.codezone)) { txt = T("jam"); sub = T("roomSub"); }
   else if (p.z > Z(D.cross[1]) && p.z < Z(D.cross[3]) && p.x > X(D.cross[0])) { txt = T("cross"); sub = T("crossSub", { w: ft((Z(D.cross[3]) - Z(D.cross[1])) / 12) }); }
   else { txt = T("room"); sub = T("roomSub"); }
   if (txt + sub !== lastWhere) { where.innerHTML = ""; where.append(txt); var sm = document.createElement("small"); sm.textContent = sub; where.append(sm); lastWhere = txt + sub; }
 }
+function inZone(p, r) { return r && p.x > X(r[0]) && p.x < X(r[2]) && p.z > Z(r[1]) && p.z < Z(r[3]); }
 function placeText(k) { var t = I18N[LANG]["place_" + k]; return t || PLACES[k].text; }
 LANG_HOOKS.push(function () { lastWhere = ""; });
 
@@ -4548,6 +4640,10 @@ var mapBase = document.createElement("canvas"); mapBase.width = mapBase.height =
   D.codetables.forEach(function (r) { rect(r, "#3f8f86"); });
   D.storage.forEach(function (r) { rect(r, "#c9915e"); });
   rect(D.cash, "#b4572a"); if (FREEPILE) rect(FREEPILE, "#e0b43a");   // the free pile (not on the plan)
+  if (D.checkin) rect(D.checkin, "#b3342f");                         // the check-in desk (on-site override)
+  // the public entrance: its two open pairs on the west wall in red, an arrow pointing in
+  [[414, 448], [482, 521]].forEach(function (o) { rect([R[0] - 3, o[0], 9, o[1] - o[0]], "#b3342f"); });
+  var ea = mapBase.px(R[0] + 4, 467.5); g.fillStyle = "#b3342f"; g.beginPath(); g.moveTo(ea[0], ea[1] - 6); g.lineTo(ea[0] + 9, ea[1]); g.lineTo(ea[0], ea[1] + 6); g.closePath(); g.fill();
   D.arcade.forEach(function (r) { rect(r, "#1d1f3a"); });
   D.power.forEach(function (q) { rect([q[0] + 2, q[1] + 3, 12, 10], "#c8423f"); });
 })();
@@ -4732,6 +4828,13 @@ var crowd = (function () {
     var p = seatAt(makePerson(r, { bag: 1, badge: true, top: pickR(r, [0x6b2a2a, 0x2f3b4f, 0x5a6b4a]) }), s, r() < 0.5 ? "desk" : "lap");
     p.role = "speaker"; p.bk = null; p.hp = 0.3;
   });
+  // the check-in desk: a volunteer in each chair, VCF-red staff tees (no role: there every day, Friday's check-in too); their own
+  // random stream, so the rest of the crowd looks as before
+  var rv = prng(121);
+  SEATS.forEach(function (s) {
+    if (s.used || s.n !== "checkin") return;
+    var p = seatAt(makePerson(rv, { top: 0xb3342f, print: "staff", printC: 0xf4f2ec, badge: true }), s, "desk"); p.bk = null; p.hp = 0.2;
+  });
   statics.forEach(function (p) {                    // which booth each exhibitor belongs to (p.bk: the game hides yours)
     if (p.bk !== undefined) return;
     var best = null, bd = 80;
@@ -4858,9 +4961,19 @@ var crowd = (function () {
   function seen(p, x, z) {                         // a person's bounding sphere (props and shadow included) in the view
     var s = p.s * Math.max(1, p.b); _cS.center.set(x, 34 * p.s, z); _cS.radius = 48 * s; return _cF.intersectsSphere(_cS);
   }
+  // newcomers come in through the public entrance (the west doors): when the count grows a little (the game's crowd building
+  // up, a crew arriving), the new ones start in the vestibule; a big jump (the menu's Visitors button, a saved game loaded at
+  // midday) puts them straight in the aisles, as at load. (Leaving, they just go.)
+  var shown = -1;
+  function atDoor(v) {
+    var o = wDoor[Math.floor(r() * wDoor.length)];
+    v.x = rx0 - 24 - r() * 30; v.z = o[0] + 12 + r() * (o[1] - o[0] - 24); v.yaw = v.tyaw = -Math.PI / 2; v.amp = 0; plan(v);
+  }
   function tick(dt) {
     nvis = LEVELS[vLevel];
     if (HOOK.visitors) { var hv = HOOK.visitors(); if (hv >= 0) nvis = Math.min(MAXV, hv | 0); }
+    if (shown >= 0 && nvis > shown && nvis - shown <= 6) for (var a = shown; a < nvis; a++) atDoor(visitors[a]);
+    shown = nvis;
     var k = (mode === "third" ? 1 : 0) + (exOn ? 2 : 0) + nvis * 4;
     if (k !== key) { key = k; rebuild(); }
     if (!active.length) return;
@@ -4965,7 +5078,8 @@ function guess(n) {                                 // the card's line, or "Deta
   return s || T("tbc");
 }
 var PLACE_INFO = {                                  // place cards: { kick, title, text } in the current language
-  entrance: function () { return { kick: T("east"), title: T("entrance"), text: T("entranceText") }; },
+  entrance: function () { return { kick: T("west"), title: T("entrance"), text: T("entranceText") }; },
+  checkin: function () { return { kick: T("west"), title: T("checkin"), text: T("checkinText") }; },
   corner: function () {
     var ks = Object.keys(CORNER).sort(), l = ks.map(function (k) { return k + " · " + CORNER[k].name; }).join(", ");
     var nb = Object.keys(D.booth || {}).filter(function (k) { return booths[k] && D.booth[k].corner; })[0] || "33";   // the booth beside it (33, LGR)
@@ -5012,7 +5126,8 @@ function boothCard(n) {
   h.push('<div class="kick">' + T("booth") + " " + n + (b ? " · " + nt + " " + T(nt > 1 ? "tables" : "table") : "") + (cat === "vendor" || cat === "creator" ? " · " + T("cat_" + cat) : "") + "</div>");
   h.push('<h2 id="info-name">' + esc(D.names[n] || T("booth") + " " + n) + "</h2>");
   // the organisers' registered description (D.desc, as registered: one language, the exhibitor's words), else our own
-  // line (known / guess). Booth 29 keeps our own line (known29); booth 10 shows theirs, plus the DOOM note.
+  // line (known / guess). Booth 29 keeps our own line (known29, EN/FR, written in the registered descriptions' plain style,
+  // owner 2026-10-16); booth 10 shows theirs, plus the DOOM note.
   var ds = +n !== 29 && D.desc && D.desc[n] ? String(D.desc[n]).split(/\n+/).map(function (t) { return t.trim(); }).filter(Boolean) : [];
   if (ds.length) {
     h.push('<div class="desc">' + ds.map(function (t) { return "<p>" + esc(t) + "</p>"; }).join("") + "</div>");
@@ -5562,8 +5677,8 @@ var RAGS = [{"t": "Maple Leaf Rag", "y": 1899, "b": "TVRoZAAAAAYAAQADAYBNVHJrAAA
   "That crack was a RIFA filter cap: after forty-odd years the case splits, damp gets in, and one day it smokes. Press E on the Osborne and pick a fix.": "Ce crac-là, c'était un condo de filtre RIFA : après une quarantaine d'années, le boîtier fend, l'humidité rentre, pis un jour ça boucane. Fais E sur l'Osborne et choisis une réparation.",
   "The server boots, but DHCP won't start. Press E on the server: fix the config yourself (▶) or take the quick fix.":
     "Le serveur démarre, mais le DHCP veut rien savoir. Fais E sur le serveur : corrige la config toi-même (▶) ou prends la solution rapide.",
-  "Exhibitors are arriving at the registration desk (the entrance, east wall). Follow the arrow and press E at the red diamond.":
-    "Les exposants arrivent à l'accueil (l'entrée, mur est). Suis la flèche et fais E au losange rouge.",
+  "Exhibitors are arriving at the registration desk (just inside the public entrance, west wall). Follow the arrow and press E at the red diamond.":
+    "Les exposants arrivent à l'accueil (juste après l'entrée publique, mur ouest). Suis la flèche et fais E au losange rouge.",
   "A cord across an aisle: press Send in the radio list (top right) and a volunteer goes. Or walk there yourself.":
     "Un fil en travers d'une allée : appuie sur Envoyer dans la liste radio (en haut à droite) et un bénévole y va. Ou vas-y toi-même.",
   "Sending costs you a minute on the radio and ties the volunteer up. Urgent calls with no Send are yours alone. The checklist is at the top of the radio.":
@@ -5627,7 +5742,7 @@ var RAGS = [{"t": "Maple Leaf Rag", "y": 1899, "b": "TVRoZAAAAAYAAQADAYBNVHJrAAA
   "the shelf over {booth} table {n}": "l'étagère au-dessus de la table {n} de {booth}",
   "{booth}, table {n}": "{booth}, table {n}",
   "join| and ": " et ",
-  "the load-in pile by the west door, beside Storage": "la pile de déchargement à la porte ouest, à côté de l'entreposage",
+  "the load-in pile by the west door, beside the check-in desk": "la pile de déchargement à la porte ouest, à côté de l'accueil",
   "Walk up to the pile first.": "Approche-toi de la pile d'abord.",
   "The pile is empty. Everything is in the hall.": "La pile est vide. Tout est rentré dans la salle.",
   "You put the {m} back on the pile.": "Tu remets {m|le} sur la pile.",
@@ -5644,7 +5759,7 @@ var RAGS = [{"t": "Maple Leaf Rag", "y": 1899, "b": "TVRoZAAAAAYAAQADAYBNVHJrAAA
   "{m} is in place.": "{m|uc} est en place.",
   "{m} is in place. The circuit is nearly full: E on it to choose where to plug it in.": "{m|uc} est en place. Le circuit est presque plein : fais E dessus pour choisir où le brancher.",
   "{m} is in place, plugged into {plugs}. E on it to switch it on.": "{m|uc} est en place, branché sur {plugs}. Fais E dessus pour l'allumer.",
-  "The {m} is still in the load-in pile by the west door, beside Storage.": "{m|uc} est encore dans la pile de déchargement, à la porte ouest, à côté de l'entreposage.",
+  "The {m} is still in the load-in pile by the west door, beside the check-in desk.": "{m|uc} est encore dans la pile de déchargement, à la porte ouest, à côté de l'accueil.",
   "That's the {m}'s spot. You're carrying the {c}: it goes on {slot}.": "Ça, c'est la place {m|de}. Tu transportes {c|le} : ça va sur {slot}.",
   "{booth} hasn't unpacked that one yet.": "{booth} a pas encore déballé celui-là.",
   "not unpacked yet": "pas encore déballé",
@@ -5762,8 +5877,8 @@ var RAGS = [{"t": "Maple Leaf Rag", "y": 1899, "b": "TVRoZAAAAAYAAQADAYBNVHJrAAA
   "Everything works. Coffee, then home before they lock the doors at 21:00.": "Tout marche. Un café, pis à la maison avant qu'ils barrent les portes à 21 h.",
   "{w} of {n} working.": "{w} sur {n} en marche.",
   "How:": "Comment :",
-  "your crates are piled by the west door, beside Storage. Aim at the pile and press E (or click) to take one; heavy ones slow you down. Aim at its empty spot at the booth to place it, then E on the machine to boot it. Power comes from panel {p}, south of the island: too much on one circuit trips the breaker.":
-    "tes caisses sont empilées à la porte ouest, à côté de l'entreposage. Vise la pile et fais E (ou clique) pour en prendre une; les lourdes te ralentissent. Vise sa place vide au kiosque pour la poser, puis E sur la machine pour la démarrer. Le courant vient du panneau {p}, au sud de l'îlot : trop de stock sur un circuit, pis le disjoncteur saute.",
+  "your crates are piled by the west door, beside the check-in desk. Aim at the pile and press E (or click) to take one; heavy ones slow you down. Aim at its empty spot at the booth to place it, then E on the machine to boot it. Power comes from panel {p}, south of the island: too much on one circuit trips the breaker.":
+    "tes caisses sont empilées à la porte ouest, à côté de l'accueil. Vise la pile et fais E (ou clique) pour en prendre une; les lourdes te ralentissent. Vise sa place vide au kiosque pour la poser, puis E sur la machine pour la démarrer. Le courant vient du panneau {p}, au sud de l'îlot : trop de stock sur un circuit, pis le disjoncteur saute.",
 
   // ---- setup.js: the 21:00 summary and the score
   "{w} of {n} running. The hall staff stop to look.": "{w} sur {n} en marche. Le personnel de la salle arrête pour regarder.",
@@ -6342,8 +6457,8 @@ var RAGS = [{"t": "Maple Leaf Rag", "y": 1899, "b": "TVRoZAAAAAYAAQADAYBNVHJrAAA
     "Ce crac-là, c'était un condo de filtre RIFA : après une quarantaine d'années, le boîtier fend, l'humidité rentre, pis un jour ça boucane. Touche l'Osborne et choisis une réparation.",
   "The server boots, but DHCP won't start. Tap the server: fix the config yourself (▶) or take the quick fix.":
     "Le serveur démarre, mais le DHCP veut rien savoir. Touche le serveur : corrige la config toi-même (▶) ou prends la solution rapide.",
-  "Exhibitors are arriving at the registration desk (the entrance, east wall). Follow the arrow and tap the red diamond.":
-    "Les exposants arrivent à l'accueil (l'entrée, mur est). Suis la flèche et touche le losange rouge.",
+  "Exhibitors are arriving at the registration desk (just inside the public entrance, west wall). Follow the arrow and tap the red diamond.":
+    "Les exposants arrivent à l'accueil (juste après l'entrée publique, mur ouest). Suis la flèche et touche le losange rouge.",
   "Sending costs you a minute on the radio and ties the volunteer up. Urgent calls with no Send are yours alone. The checklist is at the top of the radio (below).":
     "Envoyer quelqu'un te coûte une minute de radio et occupe le bénévole. Les appels urgents sans Envoyer, c'est juste toi. La liste de contrôle est en haut de la radio (en bas).",
   "Unpacked the {m}. The circuit is nearly full: tap it to choose where to plug it in.":
@@ -6356,8 +6471,8 @@ var RAGS = [{"t": "Maple Leaf Rag", "y": 1899, "b": "TVRoZAAAAAYAAQADAYBNVHJrAAA
   "Plug in the {m} ({w} W): tap it. Its circuit is nearly full: pick one (the power meter is above).":
     "Branche {m|le} ({w} W) : touche-le. Son circuit est presque plein : choisis-en un (le wattmètre est en haut).",
   "Next: boot the {m}: tap it.": "Prochaine étape : démarre {m|le} : touche-le.",
-  "your crates are piled by the west door, beside Storage. Tap the pile to take one; heavy ones slow you down. Tap its empty spot at the booth to place it, then tap the machine to boot it. Power comes from panel {p}, south of the island: too much on one circuit trips the breaker.":
-    "tes caisses sont empilées à la porte ouest, à côté de l'entreposage. Touche la pile pour en prendre une; les lourdes te ralentissent. Touche sa place vide au kiosque pour la poser, puis touche la machine pour la démarrer. Le courant vient du panneau {p}, au sud de l'îlot : trop de stock sur un circuit, pis le disjoncteur saute.",
+  "your crates are piled by the west door, beside the check-in desk. Tap the pile to take one; heavy ones slow you down. Tap its empty spot at the booth to place it, then tap the machine to boot it. Power comes from panel {p}, south of the island: too much on one circuit trips the breaker.":
+    "tes caisses sont empilées à la porte ouest, à côté de l'accueil. Touche la pile pour en prendre une; les lourdes te ralentissent. Touche sa place vide au kiosque pour la poser, puis touche la machine pour la démarrer. Le courant vient du panneau {p}, au sud de l'îlot : trop de stock sur un circuit, pis le disjoncteur saute.",
   "set it up ({n} min)": "l'installer ({n} min)",
   "dark since Friday · {n} min at the booth": "éteinte depuis vendredi · {n} min au kiosque",
   "No circuit has room for the {m}: switch something off at panel {p} first.": "Aucun circuit a de la place pour {m|le} : éteins quelque chose au panneau {p} d'abord.",
@@ -7171,8 +7286,8 @@ var RAGS = [{"t": "Maple Leaf Rag", "y": 1899, "b": "TVRoZAAAAAYAAQADAYBNVHJrAAA
   "Your job tonight": "Ta job ce soir",
   "(the checklist is at the top of the radio, top right):": "(la liste est en haut de la radio, en haut à droite) :",
   "Check in the exhibitors.": "Inscris les exposants.",
-  "They arrive all evening and wait at the {desk} by the entrance (east wall). A radio call appears: walk there and press {e}, or {send} a volunteer.":
-    "Ils arrivent toute la soirée et attendent à l'{desk} près de l'entrée (mur est). Un appel radio apparaît : vas-y et appuie sur {e}, ou {send} un bénévole avec la radio.",
+  "They arrive all evening and wait at the {desk} by the entrance (west wall). A radio call appears: walk there and press {e}, or {send} a volunteer.":
+    "Ils arrivent toute la soirée et attendent à l'{desk} près de l'entrée (mur ouest). Un appel radio apparaît : vas-y et appuie sur {e}, ou {send} un bénévole avec la radio.",
   "registration desk": "accueil",
   "Send": "Envoyer",
   "Balance the power.": "Équilibre l'électricité.",
@@ -7604,8 +7719,8 @@ var RAGS = [{"t": "Maple Leaf Rag", "y": 1899, "b": "TVRoZAAAAAYAAQADAYBNVHJrAAA
   "Fans dressed as famous computer people, and a guest or two, turn up on show days. Tap them to read their badge and collect it.":
     "Des fans déguisés en vedettes de l'informatique, et un invité ou deux, passent pendant le salon. Touche-les pour lire leur badge et le collectionner.",
   "(the checklist is at the top of the radio, at the bottom of the screen):": "(la liste est en haut de la radio, en bas de l'écran) :",
-  "They arrive all evening and wait at the {desk} by the entrance (east wall). A radio call appears: walk there and tap the desk, or {send} a volunteer.":
-    "Ils arrivent toute la soirée et attendent à l'{desk} près de l'entrée (mur est). Un appel radio apparaît : vas-y et touche le comptoir, ou {send} un bénévole avec la radio.",
+  "They arrive all evening and wait at the {desk} by the entrance (west wall). A radio call appears: walk there and tap the desk, or {send} a volunteer.":
+    "Ils arrivent toute la soirée et attendent à l'{desk} près de l'entrée (mur ouest). Un appel radio apparaît : vas-y et touche le comptoir, ou {send} un bénévole avec la radio.",
   "Walk to the red panels {p} on the cross aisle, tap one, and move booths between circuits until none is over.":
     "Va aux panneaux rouges {p} dans l'allée transversale, touches-en un, et déplace des kiosques d'un circuit à l'autre jusqu'à ce qu'aucun dépasse.",
   "Your kit is in the crates by the west door, close by: press E on them, carry the load to your table and press E there.":
@@ -13298,8 +13413,8 @@ var G = (function () {
       G.t("The server boots, but DHCP won't start. Press E on the server: fix the config yourself (▶) or take the quick fix."); }); },
     nick: function () {
       return [
-        [function () { return G.touch() ? G.t("Exhibitors are arriving at the registration desk (the entrance, east wall). Follow the arrow and tap the red diamond.") :
-          G.t("Exhibitors are arriving at the registration desk (the entrance, east wall). Follow the arrow and press E at the red diamond."); },
+        [function () { return G.touch() ? G.t("Exhibitors are arriving at the registration desk (just inside the public entrance, west wall). Follow the arrow and tap the red diamond.") :
+          G.t("Exhibitors are arriving at the registration desk (just inside the public entrance, west wall). Follow the arrow and press E at the red diamond."); },
           function () { return radioDone("checkin"); }, function () { var r = G.radio && G.radio.where("reg"); return r || null; }],
         [function () { return narrow() ? G.t("A cord across an aisle: press Send in the radio list (below) and a volunteer goes. Or walk there yourself.") :
           G.t("A cord across an aisle: press Send in the radio list (top right) and a volunteer goes. Or walk there yourself."); },
@@ -13366,7 +13481,7 @@ var G = (function () {
 
 // ---------------------------------------------------------------- VCF Tycoon: Friday setup + power
 // Friday 17:00-21:00, both booths. Gear starts "van" (a crate pile at the west door beside
-// Storage), is carried one load at a time ("hand"; weight slows you, the trolley takes three),
+// the check-in desk), is carried one load at a time ("hand"; weight slows you, the trolley takes three),
 // placed on its home slot ("booth"), plugged into a circuit at panel P1 and booted. A boot can
 // fail with a real fault (RIFA, tantalum, floppy, ...): G.fault(id, kind), repaired through
 // faults.js like any other (setup.js adds booth 10's "cable" and "dhcp"). Placing a machine plugs it in on the
@@ -13444,14 +13559,16 @@ var G = (function () {
     return G.t("{booth}, table {n}", { booth: G.boothName(L.booth), n: n });
   }
 
-  // ---- the load-in pile at the west door beside Storage: the real machines (each GEAR group moved
+  // ---- the load-in pile at the west door beside the check-in desk: the real machines (each GEAR group moved
   // off its slot), each load stacked on the floor, two rows along the wall; the rack on its cart
-  // the door spans Z(414)-Z(448); the sales desk (D.cash) is in front of it, so the pile sits just north of the desk
-  var dz0 = Z(414), PX = rx0 + 8, PZ = Math.min(dz0 - 60, Z(D.cash[1]) - 48);
+  // the door spans Z(414)-Z(448) (the public entrance since 2026-10-16); the check-in desk (D.checkin) stands just north of it,
+  // 4 ft out from the wall: the pile runs along the wall beside it, its south end 14 in short of the door, its north end
+  // (a full load, ~170 in) clear of booth 20 (and of the sales desk, D.cash, in front of the door on the plan before)
+  var dz0 = Z(414), PX = rx0 + 8, PZ = Math.min(dz0 - 60, Z(D.cash[1]) - 48, D.checkin ? Z(D.checkin[1]) - 44 : 1e9);
   var PILE_C = new THREE.Vector3(PX + 18, 0, PZ + 22), pileSolid = [PX - 2, PZ - 36, PX + 38, PZ + 82], pileOn = false;
   var cartM = new THREE.MeshLambertMaterial({ color: 0x2a2d30 });
   var pileCart = new THREE.Mesh(BOX, cartM); pileCart.visible = false; scene.add(pileCart);
-  G.setupDoor = { x: PX + 70, z: PZ + 20, text: G.t.k("the load-in pile by the west door, beside Storage") };   // teardown.js packs back to here
+  G.setupDoor = { x: PX + 70, z: PZ + 20, text: G.t.k("the load-in pile by the west door, beside the check-in desk") };   // teardown.js packs back to here
   var pileT = new THREE.Box3(new THREE.Vector3(PX - 2, 0, PZ - 36), new THREE.Vector3(PX + 38, 46, PZ + 82));
   G.setupPile = pileT;                               // (read-only for the others: drawPile keeps it the size of the pile)
   function ext(id) { var b = GEAR[id].box; return [b.max.x - b.min.x, b.max.y - b.min.y, b.max.z - b.min.z]; }
@@ -13849,7 +13966,7 @@ var G = (function () {
     if (g.down && f && f.kind !== "power" && G.phase().id !== "teardown") { G.repairUI(id); return true; }
     if (late(id)) { lateStart(id); return true; }
     if (G.phase().id !== "setup") return false;
-    if (g.where === "van") { say(G.t("The {m} is still in the load-in pile by the west door, beside Storage.", { m: lname(L) })); toPile(); return true; }
+    if (g.where === "van") { say(G.t("The {m} is still in the load-in pile by the west door, beside the check-in desk.", { m: lname(L) })); toPile(); return true; }
     if (g.down && g.fault === "power") { say(G.t("No power on {s}: reset the breaker at panel {p}, south of the island.", { s: sName(S.plug[id]), p: PANEL.n })); return true; }
     if (busy(id)) { say(G.t("{m} is still booting.", { m: nameOf(id) })); return true; }
     if (S.wait[id] || /^phone/.test(id) && !g.working) { say(verbFor(id) + "."); return true; }
@@ -14097,7 +14214,7 @@ var G = (function () {
   });
   G.on("intro", function (id, x) {
     if (id !== "setup" || !G.mine()) return;
-    x.html.push("<p><b>" + esc(G.t("How:")) + "</b> " + esc(G.touch() ? G.t("your crates are piled by the west door, beside Storage. Tap the pile to take one; heavy ones slow you down. Tap its empty spot at the booth to place it, then tap the machine to boot it. Power comes from panel {p}, south of the island: too much on one circuit trips the breaker.", { p: PANEL.n }) : G.t("your crates are piled by the west door, beside Storage. Aim at the pile and press E (or click) to take one; heavy ones slow you down. Aim at its empty spot at the booth to place it, then E on the machine to boot it. Power comes from panel {p}, south of the island: too much on one circuit trips the breaker.", { p: PANEL.n })) + "</p>");
+    x.html.push("<p><b>" + esc(G.t("How:")) + "</b> " + esc(G.touch() ? G.t("your crates are piled by the west door, beside the check-in desk. Tap the pile to take one; heavy ones slow you down. Tap its empty spot at the booth to place it, then tap the machine to boot it. Power comes from panel {p}, south of the island: too much on one circuit trips the breaker.", { p: PANEL.n }) : G.t("your crates are piled by the west door, beside the check-in desk. Aim at the pile and press E (or click) to take one; heavy ones slow you down. Aim at its empty spot at the booth to place it, then E on the machine to boot it. Power comes from panel {p}, south of the island: too much on one circuit trips the breaker.", { p: PANEL.n })) + "</p>");
   });
   G.on("quit", function () { clearPicks(); sync(); });
 
@@ -14715,7 +14832,7 @@ var G = (function () {
 // ---------------------------------------------------------------- VCF Tycoon: the other exhibitors' crews
 // Friday setup and Sunday teardown: the hall is closed to the public, so the crowd becomes the
 // other exhibitors carrying cartons between the doors (the load-in pile by the west door, the
-// public entrance) and their booths: full one way, empty-handed the other. Gamers, coders and
+// public entrance beside it, both on the west wall) and their booths: full one way, empty-handed the other. Gamers, coders and
 // the speakers' corner guests only turn up for the show days. Wraps visitors.js's HOOK.visitors / arrive.
 (function () {
   var BK = Object.keys(booths).filter(function (k) { return k !== "29" && k !== "10"; });
@@ -14730,8 +14847,9 @@ var G = (function () {
   }
   function door() {
     if (!doors) {                                   // the west load-in door (setup.js) and the public entrance
-      var w = G.setupDoor || { x: rx0 + 78, z: Z(414) - 40 }, e = PLACES.entrance;
-      doors = [{ x: w.x + 6, z: w.z, yaw: Math.PI / 2 }, { x: w.x + 6, z: w.z, yaw: Math.PI / 2 }, { x: e.x, z: e.z, yaw: -Math.PI / 2 }];
+      // (the carton stacks wait in the vestibule's back corners: the crews fetch from there, through each pair of doors)
+      doors = typeof wDoor !== "undefined" ? wDoor.map(function (p, k) { return { x: rx0 - 52, z: k ? p[1] - 20 : p[0] + 20, yaw: Math.PI / 2 }; })
+        : [{ x: PLACES.entrance.x + 8, z: PLACES.entrance.z, yaw: Math.PI / 2 }];
     }
     return doors[Math.floor(rnd() * doors.length)];
   }
@@ -14757,7 +14875,7 @@ var G = (function () {
     var toDoor = ph === "setup" ? !v.boxOn : v.boxOn;
     var wq = G.state.who === "nick" && ph === "setup" && G.state.sys.show && G.state.sys.show.wq ? G.state.sys.show.wq.length : 0;
     if (wq && v.boxOn && rnd() < Math.min(0.6, wq * 0.12) && G.radio) {   // waiting to be checked in, box in hand
-      var r = G.radio.where("reg"); v.crewWait = true; return { x: r.x - 20 - rnd() * 40, z: r.z + (rnd() * 2 - 1) * 40, yaw: Math.PI / 2, bk: null };
+      var r = G.radio.where("reg"); v.crewWait = true; return { x: r.x + (rnd() * 2 - 1) * 40, z: r.z + rnd() * 30, yaw: 0, bk: null };   // (in front of the desk, facing it: north)
     }
     if (toDoor) { var d = door(); return { x: d.x + (rnd() * 2 - 1) * 10, z: d.z + (rnd() * 2 - 1) * 24, yaw: d.yaw, bk: null }; }
     return spotAt(v.crew.b);
@@ -14779,38 +14897,30 @@ var G = (function () {
     if (!p.role) return true;
     var id = G.phase().id; return id === "sat" || id === "sun";
   };
-  // the cartons the crews pick up: a few stacks by each door they use, during setup and teardown
+  // the cartons the crews pick up: a few stacks just outside the public entrance, in the vestibule behind its doors (the hall's
+  // wDoor), during setup and teardown: not on the hall floor, where they'd stand in the way to the load-in pile and the desk
   // (owner: people took boxes from thin air). One instanced mesh, made at load (precompiled), plus
   // collision while shown. The stacks don't run down: there's always more in the van.
   var NB = 30, cart = new THREE.InstancedMesh(BOX, new THREE.MeshLambertMaterial({ color: 0xffffff }), NB), stacks = null, cartSolids = [];
   var CC = [0xc59a63, 0xb88a52, 0xd2b07a, 0xa97b45], _m = new THREE.Matrix4(), _q = new THREE.Quaternion(), _p = new THREE.Vector3(), _s = new THREE.Vector3(), _c = new THREE.Color(), _e = new THREE.Euler();
   for (var ci = 0; ci < NB; ci++) cart.setColorAt(ci, _c.setHex(CC[ci % 4]));    // (before count = 0: the colour buffer is sized by count)
   cart.visible = false; cart.frustumCulled = false; cart.count = 0; scene.add(cart);
-  function spotNear(x, z) {                         // a free spot near (x, z) for a 34 x 34 in stack
-    for (var r = 30; r <= 110; r += 16) for (var a = 0; a < 8; a++) {
-      var sx = x + Math.cos(a * 0.785) * r, sz = z + Math.sin(a * 0.785) * r, ok = true;
-      for (var dx = -20; dx <= 20 && ok; dx += 10) for (var dz = -20; dz <= 20 && ok; dz += 10) ok = free(sx + dx, sz + dz);
-      if (ok) return [sx, sz];
-    }
-    return null;
-  }
   function buildStacks() {
-    door(); var rr = prng(4242), n = 0; stacks = [];
-    [doors[0], doors[2]].forEach(function (d) {
-      for (var k = 0; k < 2; k++) {
-        var sp = spotNear(d.x + (k ? 1 : -1) * 6, d.z + (k ? 34 : -34)); if (!sp) continue;
-        stacks.push([sp[0] - 17, sp[1] - 17, sp[0] + 17, sp[1] + 17]);
-        var y = 0, h0 = 0;
-        for (var j = 0; j < 7 && n < NB; j++) {                 // two or three columns, 2-3 cartons high
-          var col = j % 3, w = 14 + rr() * 6, h = 10 + rr() * 6, dd = 13 + rr() * 5;
-          if (col === 0 && j) { y += h0; }
-          if (y > 34) break;
-          _p.set(sp[0] + (col - 1) * 11 + (rr() - 0.5) * 2, (col === 0 ? y : y) + h / 2, sp[1] + (rr() - 0.5) * 6);
-          _e.set(0, (rr() - 0.5) * 0.4, 0); _q.setFromEuler(_e); _s.set(w, h, dd);
-          _m.compose(_p, _q, _s); cart.setMatrixAt(n++, _m); h0 = Math.max(h0, h);
-        }
+    var rr = prng(4242), n = 0; stacks = [];
+    for (var k = 0; k < 2; k++) {
+      var sp = [rx0 - 76, k ? wDoor[1][1] - 20 : wDoor[0][0] + 20];   // (the vestibule's back corners, behind each pair)
+      if (!free(sp[0], sp[1])) continue;
+      stacks.push([sp[0] - 17, sp[1] - 17, sp[0] + 17, sp[1] + 17]);
+      var y = 0, h0 = 0;
+      for (var j = 0; j < 7 && n < NB; j++) {                 // two or three columns, 2-3 cartons high
+        var col = j % 3, w = 14 + rr() * 6, h = 10 + rr() * 6, dd = 13 + rr() * 5;
+        if (col === 0 && j) { y += h0; }
+        if (y > 34) break;
+        _p.set(sp[0] + (col - 1) * 11 + (rr() - 0.5) * 2, (col === 0 ? y : y) + h / 2, sp[1] + (rr() - 0.5) * 6);
+        _e.set(0, (rr() - 0.5) * 0.4, 0); _q.setFromEuler(_e); _s.set(w, h, dd);
+        _m.compose(_p, _q, _s); cart.setMatrixAt(n++, _m); h0 = Math.max(h0, h);
       }
-    });
+    }
     cart.count = n; cart.instanceMatrix.needsUpdate = true; if (cart.instanceColor) cart.instanceColor.needsUpdate = true;
   }
   function showStacks(on) {
@@ -16832,9 +16942,10 @@ var G = (function () {
   (function () {
     var c = D.cash, sx = X(c[0] + c[2]) + 28, sz = Z(c[1] + c[3] / 2);
     function put(k, x, z, fn) { for (var i = 0; i < 6 && !free(x, z); i++) x += 8; P[k] = { x: x, z: z, text: fn(), mk: fn }; R.place(k, P[k]); }   // fn: the words (again on a language switch)
-    put("reg", X(878), Z(856), function () { return G.t("Registration (the entrance)"); });
+    var CI = typeof CHECKIN !== "undefined" && CHECKIN, SZ = D.storagezone;   // the check-in desk (the hall's, by the west doors): in front of it
+    put("reg", CI ? CI.x : PLACES.entrance.x + 60, CI ? CI.front + 20 : PLACES.entrance.z, function () { return G.t("Registration (the entrance)"); });
     put("sales", sx, sz, function () { return G.t("the sales desk"); });
-    put("storage", X(232), Z(493), function () { return G.t("Storage"); });
+    put("storage", X(SZ[2]) + 14, Z((SZ[1] + SZ[3]) / 2), function () { return G.t("Storage"); });   // (its aisle side)
     put("stage", X(560), Z(473), function () { return G.t("the stage (cross aisle)"); });
     put("dock", G.setupDoor ? G.setupDoor.x + 10 : X(160), G.setupDoor ? G.setupDoor.z : Z(420), function () { return G.t("the loading door"); });
     put("corner", PLACES.corner.x, PLACES.corner.z, function () { return G.t("the speakers' corner"); });   // (the pinball corner until plan V19)
@@ -17563,8 +17674,8 @@ var G = (function () {
     var tch = G.touch(), nar = !!(window.matchMedia && matchMedia("(max-width: 760px)").matches);   // (phones: the radio sits at the bottom; touch: tap, not E)
     if (id === "setup") x.html.push("<p>" + b(G.t("Your job tonight")) + " " + esc(nar ? G.t("(the checklist is at the top of the radio, at the bottom of the screen):") :
       G.t("(the checklist is at the top of the radio, top right):")) + "</p><ol class=\"ui-steps\">" +
-      "<li>" + b(G.t("Check in the exhibitors.")) + " " + (tch ? G.t("They arrive all evening and wait at the {desk} by the entrance (east wall). A radio call appears: walk there and tap the desk, or {send} a volunteer.",
-        { desk: b(G.t("registration desk")), send: b(G.t("Send")) }) : G.t("They arrive all evening and wait at the {desk} by the entrance (east wall). A radio call appears: walk there and press {e}, or {send} a volunteer.",
+      "<li>" + b(G.t("Check in the exhibitors.")) + " " + (tch ? G.t("They arrive all evening and wait at the {desk} by the entrance (west wall). A radio call appears: walk there and tap the desk, or {send} a volunteer.",
+        { desk: b(G.t("registration desk")), send: b(G.t("Send")) }) : G.t("They arrive all evening and wait at the {desk} by the entrance (west wall). A radio call appears: walk there and press {e}, or {send} a volunteer.",
         { desk: b(G.t("registration desk")), e: b("E"), send: b(G.t("Send")) })) + "</li>" +
       "<li>" + b(G.t("Balance the power.")) + " " + (tch ? G.t("Walk to the red panels {p} on the cross aisle, tap one, and move booths between circuits until none is over.", { p: b("P1, P2, P3") }) :
         G.t("Walk to the red panels {p} on the cross aisle, press E, and move booths between circuits until none is over.", { p: b("P1, P2, P3") })) + "</li>" +
