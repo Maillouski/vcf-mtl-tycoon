@@ -1244,7 +1244,7 @@ button.tour.on { background: var(--accent); color: #fff; }
 </script>
 <script>if (!window.THREE) (function () { var fr = /^fr/.test((new URLSearchParams(location.search).get("lang")) || localStorage.getItem("hall-lang") || navigator.language || ""), d = document.createElement("div"); d.setAttribute("role", "alert"); d.style.cssText = "position:fixed;inset:0;z-index:99;display:grid;place-items:center;padding:24px;background:#1b1a17;color:#f3ecda;font:600 17px/1.5 Archivo,system-ui,sans-serif;text-align:center"; d.innerHTML = fr ? "<p>Le moteur 3D (three.js) n'a pas pu être chargé. Un bloqueur de contenu ou un réseau qui bloque cdnjs.cloudflare.com et cdn.jsdelivr.net l'empêche peut-être.<br><br><button onclick=\"location.reload()\" style=\"font:inherit;padding:8px 18px\">Réessayer</button></p>" : "<p>Couldn't load the 3D engine (three.js). A content blocker, or a network that blocks cdnjs.cloudflare.com and cdn.jsdelivr.net, may be stopping it.<br><br><button onclick=\"location.reload()\" style=\"font:inherit;padding:8px 18px\">Try again</button></p>"; document.body.appendChild(d); })();</script>
 <script>window.GAME_ONLY = true; window.VCF_PREQUELS = {"drive": "roadtrip.html", "flight": "flight.html", "nick": "nick.html"};</script>
-<script>window.VCF_BUILD = {"v": "v0.239-de39e7c", "date": "2026-10-16"};</script>
+<script>window.VCF_BUILD = {"v": "v0.240-ab43039", "date": "2026-10-16"};</script>
 <script>window.VCF_MUSEUM_AUDIO = "audio/museum/";</script>
 <script>
 // ---------------------------------------------------------------- language (FR / EN)
@@ -4791,6 +4791,11 @@ var crowd = (function () {
   function nearH(z) { var b = 0; for (var j = 1; j < 3; j++) if (Math.abs(z - H[j]) < Math.abs(z - H[b])) b = j; return b; }
   function nearSeat(x, z, d) { for (var j = 0; j < SEATS.length; j++) if (Math.abs(SEATS[j].x - x) < d && Math.abs(SEATS[j].z - z) < d) return true; return false; }
   function seatYaw(s) { return Math.atan2(-s.fx, -s.fz); }
+  function clear(x, z, m) {                        // no solid (a table, shelves...) within m in of (x, z)
+    for (var j = 0; j < solids.length; j++) { var s = solids[j]; if (x > s[0] - m && x < s[2] + m && z > s[1] - m && z < s[3] + m) return false; }
+    return true;
+  }
+  function near(x, z) { for (var j = 0; j < statics.length; j++) if (Math.hypot(statics[j].x - x, statics[j].z - z) < 16) return true; return false; }   // someone already stands there
 
   // ---- exhibitors and the other people who stay put
   var statics = [];
@@ -4811,14 +4816,16 @@ var crowd = (function () {
     var list = n === 29 ? [b.tables[0], b.tables[b.tables.length - 1]] : b.tables.slice(0, 3);
     list.forEach(function (t) {
       var x = t.cx + dir * (22 + r() * 6), z = t.cz, seat = null, bd = 34;
-      SEATS.forEach(function (s) { var d = Math.hypot(s.x - x, s.z - z); if (!s.used && (s.x - t.cx) * dir > 8 && d < bd) { bd = d; seat = s; } });
+      SEATS.forEach(function (s) { var d = Math.hypot(s.x - x, s.z - z); if (!s.used && (s.x - t.cx) * dir > 8 && d < bd && clear(s.x - s.fx * 1.5, s.z - s.fz * 1.5, 0)) { bd = d; seat = s; } });
       // exhibitors' shirts: booth 29's orange, a team colour with a logo, or the VCF-red staff tee
       var u = r(), w = r(), p = makePerson(r, n === 29 ? { top: 0xd99a2b, print: "logo", printC: 0x1f1f22, bag: 1, badge: true } :
         u < 0.6 ? { top: team, print: "logo", printC: teamC, bag: 1, badge: true } : w < 0.5 ? { top: 0xb3342f, print: "staff", printC: 0xf4f2ec, bag: 1, badge: true } : { bag: 1, badge: true });
       if (seat) { seatAt(p, seat, r() < 0.6 ? "desk" : "lap"); return; }
-      var offs = [0, 6, -6, 12, -12], o = 0;
-      for (var j = 0; j < offs.length; j++) if (free(x, z + offs[j])) { o = offs[j]; break; }
-      put(p, x, z + o, yawA, pickR(r, ["side", "side", "clasp"]));
+      // behind the table, clear of everything else there (a plan can put a second table, shelves or a power drop
+      // right behind it: owner, 2026-10-16, an exhibitor stood inside a table); no spot clear, no exhibitor
+      var offs = [0, 6, -6, 12, -12, 20, -20], back = [0, 10, 20, 34, 44], o = null, xb = x;
+      for (var bi = 0; bi < back.length && o === null; bi++) for (var j = 0; j < offs.length; j++) if (clear(x + dir * back[bi], z + offs[j], 6) && !near(x + dir * back[bi], z + offs[j])) { o = offs[j]; xb = x + dir * back[bi]; break; }
+      if (o !== null) put(p, xb, z + o, yawA, pickR(r, ["side", "side", "clasp"]));
     });
     if (n === 29 && b.rack) put(makePerson(r, { top: 0xd99a2b, print: "logo", printC: 0x1f1f22, bag: 1, badge: true }), b.rack.x - 4, b.rack.z + 25, 0.15, "rack");
   });
