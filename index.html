@@ -129,6 +129,28 @@ button.tour.on { background: var(--accent); color: #fff; }
   .card:not(.open) > :not(.head) { display: none; }
   #info { top: auto; bottom: calc(150px + env(safe-area-inset-bottom, 0px)); max-height: calc(100vh - 220px); max-height: calc(100dvh - 220px); }
 }
+/* the site build's ticket bar (#buy): a dark pill at the bottom, the days to go and the advance-sale saving, the ticket link
+   and a close key; stacked text where the one line won't fit between the location box and the map, above the map on a
+   narrow screen, hidden while a booth card sits over it there */
+#buy { position: fixed; left: 50%; transform: translateX(-50%); bottom: calc(12px + env(safe-area-inset-bottom, 0px)); z-index: 1;
+  display: flex; align-items: center; gap: 14px; padding: 6px 4px 6px 18px; border-radius: 999px; white-space: nowrap;
+  background: rgba(27,26,23,.94); color: #f3ecda; font: 600 14px/1.25 Archivo, system-ui, sans-serif; box-shadow: 0 8px 24px rgba(0,0,0,.35); }
+#buy b { color: #fff; font-weight: 800; }
+#buy .sv { font-weight: 500; }
+#buy .s { display: none; }
+#buy a { display: inline-flex; align-items: center; gap: 6px; min-height: 44px; box-sizing: border-box; padding: 10px 18px; border-radius: 999px;
+  background: #b8322a; color: #fff; text-decoration: none; font: 700 15px/1.1 Archivo, system-ui, sans-serif; }
+#buy a:hover { background: #9a2b27; }
+#buy a:focus-visible, #buy .x:focus-visible { outline: 3px solid #fff; outline-offset: 2px; }
+#buy .x { min-width: 44px; min-height: 44px; padding: 0; border: 0; border-radius: 50%; background: none; color: #d8cfbd; font-size: 20px; line-height: 1; cursor: pointer; }
+@media (max-width: 1180px) { #buy .l { display: none; } #buy .s { display: inline; line-height: 1.2; } }
+@media (min-width: 901px) { .buy-on #where { bottom: calc(78px + env(safe-area-inset-bottom, 0px)); } }   /* the location box: above the bar's row */
+@media (max-width: 900px) { #buy { left: auto; right: 12px; transform: none; bottom: calc(202px + env(safe-area-inset-bottom, 0px)); }
+  #info:not([hidden]) ~ #buy { display: none; } }
+@media (max-width: 560px) { #buy { right: auto; left: 50%; transform: translateX(-50%); bottom: calc(140px + env(safe-area-inset-bottom, 0px));
+  gap: 8px; padding: 4px 2px 4px 14px; font-size: 13px; max-width: calc(100vw - 24px); }
+  #buy a { padding: 10px 14px; font-size: 14px; }
+  .buy-on #where { bottom: calc(200px + env(safe-area-inset-bottom, 0px)); } }
 /* something threw (errBanner): a strip at the bottom, over everything but the context-lost card */
 #err-bar { position: fixed; left: 50%; transform: translateX(-50%); bottom: calc(14px + env(safe-area-inset-bottom, 0px)); z-index: 90;
   display: flex; align-items: center; gap: 10px; flex-wrap: wrap; justify-content: center; max-width: calc(100vw - 24px); box-sizing: border-box;
@@ -184,6 +206,7 @@ button.tour.on { background: var(--accent); color: #fff; }
 <div id="guide" hidden><i></i><span></span></div>
 <div id="aim" hidden></div>
 <div id="info" role="dialog" aria-labelledby="info-name" aria-live="polite" hidden></div>
+<div id="buy" hidden></div>
 
 <script>
 /**
@@ -1244,7 +1267,7 @@ button.tour.on { background: var(--accent); color: #fff; }
 </script>
 <script>if (!window.THREE) (function () { var fr = /^fr/.test((new URLSearchParams(location.search).get("lang")) || localStorage.getItem("hall-lang") || navigator.language || ""), d = document.createElement("div"); d.setAttribute("role", "alert"); d.style.cssText = "position:fixed;inset:0;z-index:99;display:grid;place-items:center;padding:24px;background:#1b1a17;color:#f3ecda;font:600 17px/1.5 Archivo,system-ui,sans-serif;text-align:center"; d.innerHTML = fr ? "<p>Le moteur 3D (three.js) n'a pas pu être chargé. Un bloqueur de contenu ou un réseau qui bloque cdnjs.cloudflare.com et cdn.jsdelivr.net l'empêche peut-être.<br><br><button onclick=\"location.reload()\" style=\"font:inherit;padding:8px 18px\">Réessayer</button></p>" : "<p>Couldn't load the 3D engine (three.js). A content blocker, or a network that blocks cdnjs.cloudflare.com and cdn.jsdelivr.net, may be stopping it.<br><br><button onclick=\"location.reload()\" style=\"font:inherit;padding:8px 18px\">Try again</button></p>"; document.body.appendChild(d); })();</script>
 <script>window.GAME_ONLY = true; window.VCF_PREQUELS = {"drive": "roadtrip.html", "flight": "flight.html", "nick": "nick.html"};</script>
-<script>window.VCF_BUILD = {"v": "v0.297-19607de", "date": "2026-10-19"};</script>
+<script>window.VCF_BUILD = {"v": "v0.300-f32b5f8", "date": "2026-10-19"};</script>
 <script>window.VCF_MUSEUM_AUDIO = "audio/museum/";</script>
 <script>
 // ---------------------------------------------------------------- language (FR / EN)
@@ -1327,6 +1350,48 @@ var I18N = {
 if (window.SITE_BUILD) {
   I18N.en.go_ours = "Booth 29"; I18N.fr.go_ours = "Kiosque 29"; I18N.en.us = I18N.fr.us = "";
 }
+// the ticket bar (the site build only: the organisers embed it; not in the game or the kiosk): the days to go until the
+// Saturday and the advance-sale saving, from Montréal's date and time; on the show days the hours instead, and gone after
+// Sunday 15:00. The saving shows until the presale ends, Friday Nov 6 at 23:59 (the owner, 2026-10-19), i.e. while d >= 1.
+// Closing it is remembered on this browser (hall-buy-x). TICKETS: the organisers' Humanitix page with the map's own tracking
+// code (cvcfed_map, from the owner; their site's own links use cvcfed_web); it opens in a new tab.
+var TICKETS = "https://events.humanitix.com/vcf-montreal-2026-2-0?c=cvcfed_map";
+I18N.en.buyGo = "{n} days to go"; I18N.fr.buyGo = "Plus que {n} jours"; I18N.en.buyGoS = "{n} days to go"; I18N.fr.buyGoS = "J-{n}";
+I18N.en.buyEve = "Tomorrow!"; I18N.fr.buyEve = "C'est demain" + NB + "!";
+I18N.en.buySat = "Today, 9 am – 5 pm"; I18N.fr.buySat = "Aujourd'hui, de 9" + NB + "h à 17" + NB + "h";
+I18N.en.buySatEve = "Back tomorrow, 9 am – 3 pm"; I18N.fr.buySatEve = "De retour demain, de 9" + NB + "h à 15" + NB + "h";
+I18N.en.buySun = "Last day, until 3 pm"; I18N.fr.buySun = "Dernier jour, jusqu'à 15" + NB + "h";
+I18N.en.buyDate = "Sat Nov 7"; I18N.fr.buyDate = "sam. 7 nov.";
+I18N.en.buySave = "Save up to $20 in advance"; I18N.fr.buySave = "Économisez jusqu'à 20" + NB + "$ en prévente";
+I18N.en.buySaveS = "Save up to $20"; I18N.fr.buySaveS = "Jusqu'à 20" + NB + "$ de moins";
+I18N.en.buyBtn = "Tickets"; I18N.fr.buyBtn = "Billets";
+I18N.en.buyAria = "Tickets: buy a ticket (opens in a new tab)"; I18N.fr.buyAria = "Billets" + NB + ": acheter un billet (s'ouvre dans un nouvel onglet)";
+I18N.en.buyClose = "Close"; I18N.fr.buyClose = "Fermer";
+function buyDay() {                                 // { d: days until Sat Nov 7 (Montréal), h: the hour there }
+  var o = {}; new Intl.DateTimeFormat("en-CA", { timeZone: "America/Toronto", year: "numeric", month: "numeric", day: "numeric", hour: "numeric", hourCycle: "h23" })
+    .formatToParts(new Date()).forEach(function (p) { o[p.type] = +p.value; });
+  return { d: Math.round((Date.UTC(2026, 10, 7) - Date.UTC(o.year, o.month - 1, o.day)) / 864e5), h: o.hour };
+}
+var buyKey = "";
+function buyBar(tick) {                             // tick: the minute timer (redraws only when the day's state changes)
+  var el = document.getElementById("buy"), off = false;
+  try { off = localStorage.getItem("hall-buy-x") === "1"; } catch (err) {}
+  var t = buyDay(), d = t.d, gone = off || d < -1 || (d === -1 && t.h >= 15), key = gone ? "gone" : d + "|" + (d === 0 && t.h >= 17) + "|" + LANG;
+  if (tick && key === buyKey) return; buyKey = key;
+  el.hidden = gone; document.body.classList.toggle("buy-on", !gone); if (gone) { el.innerHTML = ""; return; }
+  function esc(x) { return String(x).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/"/g, "&quot;"); }
+  var head = d >= 2 ? T("buyGo", { n: d }) : d === 1 ? T("buyEve") : d === 0 ? (t.h >= 17 ? T("buySatEve") : T("buySat")) : T("buySun"),
+    headS = d >= 2 ? T("buyGoS", { n: d }) : head, pre = d >= 1;
+  el.innerHTML = '<span class="l"><b>' + esc(head) + "</b>" + (pre ? " · " + esc(T("buyDate")) + ' · <span class="sv">' + esc(T("buySave")) + "</span>" : "") + "</span>" +
+    '<span class="s"><b>' + esc(headS) + "</b>" + (pre ? '<br><span class="sv">' + esc(T("buySaveS")) + "</span>" : "") + "</span>" +
+    '<a href="' + TICKETS + '" target="_blank" rel="noopener" aria-label="' + esc(T("buyAria")) + '">' + esc(T("buyBtn")) + ' <span aria-hidden="true">↗</span></a>' +
+    '<button type="button" class="x" aria-label="' + esc(T("buyClose")) + '">×</button>';
+  el.querySelector(".x").addEventListener("click", function () {
+    try { localStorage.setItem("hall-buy-x", "1"); } catch (err) {}
+    el.hidden = true; document.body.classList.remove("buy-on"); buyKey = "gone";
+  });
+}
+if (window.SITE_BUILD) { LANG_HOOKS.push(function () { buyBar(); }); setInterval(function () { buyBar(true); }, 60000); }   // (a tab left open: the next day's count, gone at 15:00 Sunday)
 I18N.en.fold = "Fold / unfold"; I18N.fr.fold = "Replier / déplier";
 I18N.en.prelim = "Preliminary layout: booths may still move before the show.";
 I18N.en.swNote = "Your browser is drawing without the graphics card, so the hall runs at low quality and may still be slow.";
@@ -5251,7 +5316,7 @@ addEventListener("keydown", function (e) {
   var k = e.key;
   if (k === "Escape" && infoOpen) { closeInfo(); e.preventDefault(); return; }   // (consumed: the game's Esc pause leaves it)
   if ((k === "e" || k === "E" || k === "Enter") && !e.repeat && !e.ctrlKey && !e.metaKey && !e.altKey) {
-    if (k === "Enter" && e.target.tagName === "BUTTON") return;   // a focused button keeps its Enter
+    if (k === "Enter" && (e.target.tagName === "BUTTON" || e.target.tagName === "A")) return;   // a focused button or link keeps its Enter
     if (HOOK.modal && HOOK.modal()) return;             // a game card is up: it takes E / Enter (core: the recommended button)
     var p = aim && aimFrom === "look" ? aim : mode !== "fly" ? pickAt(0, AIM_Y, 260) : aim;
     // in a game: an info card only with Shift+E (HOOK.infoGate); E on nothing, or on a booth sign, asks the game (HOOK.missE:
