@@ -1267,7 +1267,7 @@ button.tour.on { background: var(--accent); color: #fff; }
 </script>
 <script>if (!window.THREE) (function () { var fr = /^fr/.test((new URLSearchParams(location.search).get("lang")) || localStorage.getItem("hall-lang") || navigator.language || ""), d = document.createElement("div"); d.setAttribute("role", "alert"); d.style.cssText = "position:fixed;inset:0;z-index:99;display:grid;place-items:center;padding:24px;background:#1b1a17;color:#f3ecda;font:600 17px/1.5 Archivo,system-ui,sans-serif;text-align:center"; d.innerHTML = fr ? "<p>Le moteur 3D (three.js) n'a pas pu être chargé. Un bloqueur de contenu ou un réseau qui bloque cdnjs.cloudflare.com et cdn.jsdelivr.net l'empêche peut-être.<br><br><button onclick=\"location.reload()\" style=\"font:inherit;padding:8px 18px\">Réessayer</button></p>" : "<p>Couldn't load the 3D engine (three.js). A content blocker, or a network that blocks cdnjs.cloudflare.com and cdn.jsdelivr.net, may be stopping it.<br><br><button onclick=\"location.reload()\" style=\"font:inherit;padding:8px 18px\">Try again</button></p>"; document.body.appendChild(d); })();</script>
 <script>window.GAME_ONLY = true; window.VCF_PREQUELS = {"drive": "roadtrip.html", "flight": "flight.html", "nick": "nick.html"};</script>
-<script>window.VCF_BUILD = {"v": "v0.300-f32b5f8", "date": "2026-10-19"};</script>
+<script>window.VCF_BUILD = {"v": "v0.301-7d7c0b8", "date": "2026-10-20"};</script>
 <script>window.VCF_MUSEUM_AUDIO = "audio/museum/";</script>
 <script>
 // ---------------------------------------------------------------- language (FR / EN)
@@ -1353,7 +1353,7 @@ if (window.SITE_BUILD) {
 // the ticket bar (the site build only: the organisers embed it; not in the game or the kiosk): the days to go until the
 // Saturday and the advance-sale saving, from Montréal's date and time; on the show days the hours instead, and gone after
 // Sunday 15:00. The saving shows until the presale ends, Friday Nov 6 at 23:59 (the owner, 2026-10-19), i.e. while d >= 1.
-// Closing it is remembered on this browser (hall-buy-x). TICKETS: the organisers' Humanitix page with the map's own tracking
+// Closing it lasts until the page is loaded again (the owner, 2026-10-20). TICKETS: the organisers' Humanitix page with the map's own tracking
 // code (cvcfed_map, from the owner; their site's own links use cvcfed_web); it opens in a new tab.
 var TICKETS = "https://events.humanitix.com/vcf-montreal-2026-2-0?c=cvcfed_map";
 I18N.en.buyGo = "{n} days to go"; I18N.fr.buyGo = "Plus que {n} jours"; I18N.en.buyGoS = "{n} days to go"; I18N.fr.buyGoS = "J-{n}";
@@ -1372,10 +1372,9 @@ function buyDay() {                                 // { d: days until Sat Nov 7
     .formatToParts(new Date()).forEach(function (p) { o[p.type] = +p.value; });
   return { d: Math.round((Date.UTC(2026, 10, 7) - Date.UTC(o.year, o.month - 1, o.day)) / 864e5), h: o.hour };
 }
-var buyKey = "";
+var buyKey = "", buyX = false;                   // buyX: closed on this page view
 function buyBar(tick) {                             // tick: the minute timer (redraws only when the day's state changes)
-  var el = document.getElementById("buy"), off = false;
-  try { off = localStorage.getItem("hall-buy-x") === "1"; } catch (err) {}
+  var el = document.getElementById("buy"), off = buyX;
   var t = buyDay(), d = t.d, gone = off || d < -1 || (d === -1 && t.h >= 15), key = gone ? "gone" : d + "|" + (d === 0 && t.h >= 17) + "|" + LANG;
   if (tick && key === buyKey) return; buyKey = key;
   el.hidden = gone; document.body.classList.toggle("buy-on", !gone); if (gone) { el.innerHTML = ""; return; }
@@ -1387,7 +1386,7 @@ function buyBar(tick) {                             // tick: the minute timer (r
     '<a href="' + TICKETS + '" target="_blank" rel="noopener" aria-label="' + esc(T("buyAria")) + '">' + esc(T("buyBtn")) + ' <span aria-hidden="true">↗</span></a>' +
     '<button type="button" class="x" aria-label="' + esc(T("buyClose")) + '">×</button>';
   el.querySelector(".x").addEventListener("click", function () {
-    try { localStorage.setItem("hall-buy-x", "1"); } catch (err) {}
+    buyX = true;
     el.hidden = true; document.body.classList.remove("buy-on"); buyKey = "gone";
   });
 }
