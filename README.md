@@ -22,7 +22,7 @@ Play a weekend at the show, Friday load-in to Sunday teardown, as:
 - **Land of the Portables**: vintage luggables and laptops, the guest book, Dial-a-Museum.
 - **Griefenbunker LAN**: keep the LAN party's seats full and the players happy.
 - **Nick, the showrunner**: the whole hall: check-in, power, badges, payments, volunteers.
-- **Clint, the retro-tech video maker**: a line of fans at the guest table, forty-five booths to film.
+- **Clint, the retro-tech video maker**: a line of fans at the guest table, forty-seven booths to film.
 
 Or just walk around the hall. There's also an 8-minute show-floor demo. French / English.
 
