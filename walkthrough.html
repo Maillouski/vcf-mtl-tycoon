@@ -213,7 +213,7 @@ button.tour.on { background: var(--accent); color: #fff; }
 <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
 <script>if (!window.THREE) (function () { var fr = /^fr/.test((new URLSearchParams(location.search).get("lang")) || localStorage.getItem("hall-lang") || navigator.language || ""), d = document.createElement("div"); d.setAttribute("role", "alert"); d.style.cssText = "position:fixed;inset:0;z-index:99;display:grid;place-items:center;padding:24px;background:#1b1a17;color:#f3ecda;font:600 17px/1.5 Archivo,system-ui,sans-serif;text-align:center"; d.innerHTML = fr ? "<p>Le moteur 3D (three.js) n'a pas pu être chargé. Un bloqueur de contenu ou un réseau qui bloque cdnjs.cloudflare.com et cdn.jsdelivr.net l'empêche peut-être.<br><br><button onclick=\"location.reload()\" style=\"font:inherit;padding:8px 18px\">Réessayer</button></p>" : "<p>Couldn't load the 3D engine (three.js). A content blocker, or a network that blocks cdnjs.cloudflare.com and cdn.jsdelivr.net, may be stopping it.<br><br><button onclick=\"location.reload()\" style=\"font:inherit;padding:8px 18px\">Try again</button></p>"; document.body.appendChild(d); })();</script>
-<script>window.VCF_BUILD = {"v": "v0.303-5325307", "date": "2026-10-25"};</script>
+<script>window.VCF_BUILD = {"v": "v0.306-cd609af", "date": "2026-10-26"};</script>
 <script>window.SITE_BUILD = true;</script>
 <script>
 // ---------------------------------------------------------------- language (FR / EN)
@@ -258,7 +258,7 @@ var I18N = {
     east: "East wall", entranceText: "Room D 121 at Champlain College Saint-Lambert, VCF Montréal 2026, through the double door at the south end of the east wall. The three islands are ahead and to the right; the speakers' corner is in the far corner. The doorstop is a Commodore 128.",
     west: "West wall", cornerText: "The guests' tables along the north wall: {s}. Booth {b} ({n}) is beside them.",
     cornerText1: "The guests' table along the north wall: {s}. Booth {b} ({n}) is beside it.",
-    c128Text: "The doorstop: a Commodore 128 (1985), holding the public entrance open. Bill Herd, its lead hardware designer, asked for one." },
+    c128Text: "The doorstop: a Commodore 128 (1985), holding the public entrance open." },
   fr: { title: "VCF Montréal 2026 · Salle D 121", where: "Collège Champlain Saint‑Lambert", ft: "pi", page: "VCF Montréal : visite de la salle",
     sub: "Plan des kiosques V{v} (variante {k}) · {b} kiosques · {t} tables de 60 × 30 po · espace utile de 100 × 100 pi",
     modes: "Mode de caméra", walk: "Marcher", third: "3e personne", fly: "Survol", mouse: "Vue souris",
@@ -290,7 +290,7 @@ var I18N = {
     east: "Mur est", entranceText: "Salle D 121 du Collège Champlain Saint-Lambert, VCF Montréal 2026, par la porte double au bout sud du mur est. Les trois îlots sont devant et à droite" + NB + "; le coin des conférenciers est dans le coin opposé. Le butoir de porte est un Commodore 128.",
     west: "Mur ouest", cornerText: "Les tables des invités, le long du mur nord" + NB + ": {s}. Le kiosque {b} ({n}) est juste à côté.",
     cornerText1: "La table des invités, le long du mur nord" + NB + ": {s}. Le kiosque {b} ({n}) est juste à côté.",
-    c128Text: "Le butoir de porte" + NB + ": un Commodore 128 (1985), qui tient l'entrée publique ouverte. Bill Herd, son concepteur matériel principal, en a demandé un." }
+    c128Text: "Le butoir de porte" + NB + ": un Commodore 128 (1985), qui tient l'entrée publique ouverte." }
 };
 // SITE_BUILD (build-hall.py --site): the walk-through for the show's website, like the organisers' copy:
 // no game, no Doom, booth 29 shown like any other (no "us"), a "preliminary layout" note, the walk starts
@@ -645,7 +645,7 @@ wallPart("W", wDoor[1][0], wDoor[1][1], 96, WALL); wallPart("W", wDoor[1][1], rz
 // visitor's feedback of 2026-10-25), open, a short corridor behind it. The V18 drawing showed an opening mid-wall (eOpen1,
 // "corridor"); on site (the owner's photos) it is the stowed gym divider's tall housing between the two bleacher banks:
 // solid wall, not a way out (drawn with the bleachers).
-var eOpen1 = [Z(436), Z(512)], eDoor = [Z(840), Z(872)];
+var eOpen1 = [Z(436), Z(512)], eDoor = [Z(808), Z(855)];   // (the owner's photos, 2026-10-26: a little north of the V18 drawing's door, no other door beside it)
 wall(rx1, rz0, rx1 + 6, eDoor[0]); wall(rx1, eDoor[1], rx1 + 6, rz1);
 wallPart("E", rz0, eDoor[0], 0, WALL); wallPart("E", eDoor[0], eDoor[1], 96, WALL); wallPart("E", eDoor[1], rz1, 0, WALL);
 // the roof deck: black corrugated steel, ribs north-south, seen from below only (from above it is see-through too)
@@ -1002,9 +1002,32 @@ function poster(g, x, z, w, h, key, draw) {          // a print on a little ease
   var s = sub(g, x, 0, z, -0.18); vb(s, w + 0.8, h + 0.8, 0.5, 0x2a2a2a, 0, 0, -0.3); pl(s, cell(key, 96, Math.round(96 * h / w), draw), w, h, 0, h / 2 + 0.4, 0.01);
   vb(g, 0.6, h * 0.8, 0.6, 0x2a2a2a, x, 0, z - 3);
 }
+// the maple leaf (11 points, its stem down) and the fleur-de-lis (its petal up), in a unit box centred on 0, 0
+var MAPLE = [[0, -0.5], [0.08, -0.35], [0.16, -0.39], [0.12, -0.13], [0.26, -0.26], [0.29, -0.19], [0.44, -0.22], [0.38, -0.07],
+  [0.45, -0.03], [0.22, 0.16], [0.25, 0.24], [0.035, 0.21], [0.035, 0.42], [-0.035, 0.42], [-0.035, 0.21], [-0.25, 0.24], [-0.22, 0.16],
+  [-0.45, -0.03], [-0.38, -0.07], [-0.44, -0.22], [-0.29, -0.19], [-0.26, -0.26], [-0.12, -0.13], [-0.16, -0.39], [-0.08, -0.35]];
+function maple(c, x, y, s) { c.beginPath(); MAPLE.forEach(function (p, i) { c[i ? "lineTo" : "moveTo"](x + p[0] * s, y + p[1] * s); }); c.closePath(); c.fill(); }
+function fleur(c, x, y, s) {                         // each part filled on its own (overlapping parts never punch holes)
+  c.save(); c.translate(x, y); c.scale(s, s);
+  function part(f) { c.beginPath(); f(); c.fill(); }
+  part(function () { c.moveTo(0, -0.5); c.bezierCurveTo(0.17, -0.3, 0.16, -0.08, 0.06, 0.1); c.lineTo(-0.06, 0.1); c.bezierCurveTo(-0.16, -0.08, -0.17, -0.3, 0, -0.5); });   // the middle petal
+  [1, -1].forEach(function (k) {                    // the side petals, curling out and down
+    part(function () { c.moveTo(0.05 * k, 0.1); c.bezierCurveTo(0.08 * k, -0.22, 0.5 * k, -0.3, 0.46 * k, 0.0); c.bezierCurveTo(0.44 * k, 0.12, 0.3 * k, 0.12, 0.32 * k, 0.02);
+      c.bezierCurveTo(0.24 * k, -0.02, 0.18 * k, 0.04, 0.16 * k, 0.1); c.closePath(); });
+    part(function () { c.moveTo(0.05 * k, 0.18); c.bezierCurveTo(0.1 * k, 0.26, 0.26 * k, 0.24, 0.3 * k, 0.38); c.bezierCurveTo(0.18 * k, 0.34, 0.1 * k, 0.32, 0.04 * k, 0.26); c.closePath(); });   // the foot's side lobes
+  });
+  part(function () { c.rect(-0.28, 0.08, 0.56, 0.1); });                                                        // the band
+  part(function () { c.moveTo(-0.06, 0.18); c.lineTo(0.06, 0.18); c.lineTo(0, 0.44); c.closePath(); });          // the foot's middle
+  c.restore();
+}
+function onEnd(f) { return function (c, w, h) { c.save(); c.translate(0, h); c.rotate(-Math.PI / 2); f(c, h, w); c.restore(); }; }   // hung on end: its top to the left
 var FLAGS = {
   ca: function (c, w, h) { c.fillStyle = "#fff"; c.fillRect(0, 0, w, h); c.fillStyle = "#d52b1e"; c.fillRect(0, 0, w / 4, h); c.fillRect(w * 0.75, 0, w / 4, h);
-    c.beginPath(); c.moveTo(w / 2, h * 0.18); c.lineTo(w * 0.6, h * 0.62); c.lineTo(w * 0.4, h * 0.62); c.fill(); c.fillRect(w / 2 - 1, h * 0.6, 2, h * 0.22); },
+    maple(c, w / 2, h / 2 + h * 0.02, Math.min(w / 2, h) * 0.86); },
+  qc: function (c, w, h) { c.fillStyle = "#095797"; c.fillRect(0, 0, w, h); c.fillStyle = "#fff"; var a = h / 4;
+    c.fillRect(w / 2 - a / 2, 0, a, h); c.fillRect(0, h / 2 - a / 2, w, a);
+    var qx = (w - a) / 4, qy = (h - a) / 4;           // the middle of each blue quarter
+    [[qx, qy], [w - qx, qy], [qx, h - qy], [w - qx, h - qy]].forEach(function (p) { fleur(c, p[0], p[1], Math.min(qx, qy) * 1.55); }); },
   uk: function (c, w, h) { c.fillStyle = "#1f3a8a"; c.fillRect(0, 0, w, h); c.strokeStyle = "#fff"; c.lineWidth = 7; c.beginPath(); c.moveTo(0, 0); c.lineTo(w, h); c.moveTo(w, 0); c.lineTo(0, h); c.stroke();
     c.strokeStyle = "#c8202a"; c.lineWidth = 2.5; c.stroke(); c.fillStyle = "#fff"; c.fillRect(0, h / 2 - 6, w, 12); c.fillRect(w / 2 - 6, 0, 12, h); c.fillStyle = "#c8202a"; c.fillRect(0, h / 2 - 3.5, w, 7); c.fillRect(w / 2 - 3.5, 0, 7, h); },
   br: function (c, w, h) { c.fillStyle = "#1f8a3a"; c.fillRect(0, 0, w, h); c.fillStyle = "#f2d22a"; c.beginPath(); c.moveTo(w / 2, 4); c.lineTo(w - 6, h / 2); c.lineTo(w / 2, h - 4); c.lineTo(6, h / 2); c.fill();
@@ -1414,7 +1437,7 @@ var PDP_PANEL = cell("pdp1170", 220, 100, function (c, w, h) {
 ATEX.needsUpdate = true;
 // the room's props (doors, signs, bleachers, consignment shelves...) are built further down with the same helpers and materials
 WX = { pdp: PDP_PANEL, vb: vb, vc: vc, pl: pl, cell: cell, tx: tx, sub: sub, UP: UP, PV: PV, PA: PA, PG: PG, ATEX: ATEX, gbox: gbox, kbd: kbd, comp: comp, aio: aio,
-  tag: tag, bin: bin, dbox: dbox, board: board, drv: drv, disks: disks, cart: cart, sign: sign, css: css, wrap: wrap, SANS: SANS, MONO: MONO, FLAGS: FLAGS,
+  tag: tag, bin: bin, dbox: dbox, board: board, drv: drv, disks: disks, cart: cart, sign: sign, css: css, wrap: wrap, SANS: SANS, MONO: MONO, FLAGS: FLAGS, onEnd: onEnd,
   colGeo: colGeo, VG: VG, CYL8: CYL8, C: C, scr: scr, keyTop: keyTop, art: art, ACX: ACX, AS: AS, lap: lap };
 })();
 // the speakers' corner: a laptop and a row of their books on each table, facing the aisle
@@ -2512,7 +2535,7 @@ var ROOMW = {};
       pl(g, cell(two ? "rd:2" : "rd:1", two ? 88 : 52, 120, leaves(two ? 2 : 1)), wid, 84, 0, 42, 0.5);
       vb(g, 2.5, 87, 1.6, 0x161718, -wid / 2 - 1.25, 0, 0.4); vb(g, 2.5, 87, 1.6, 0x161718, wid / 2 + 1.25, 0, 0.4); vb(g, wid + 5, 3, 1.6, 0x161718, 0, 84, 0.4);
     }
-    var up = side === "E" && (a0 === 78 || a0 === 840) ? 16 : 0, dz = up ? 12 : 0;   // (the east doors' canopies: the sign stands on top)
+    var up = side === "E" && (a0 === 78 || a0 === 808) ? 16 : 0, dz = up ? 12 : 0;   // (the east doors' canopies: the sign stands on top)
     if (kind === "exit") { vb(g, 22, 10, 3, 0x6d7276, 0, 96 + up, 1.5 + dz); pl(g, signCell("exit"), 21, 8.5, 0, 101 + up, 3.1 + dz, 0, false); }
     else { var w = kind === "entrance" ? 56 : kind === "loadin" ? 44 : 28; pl(g, signCell(kind), w, w * 96 / 256, 0, (kind === "locked" ? 98 : 104) + up, 1.2 + dz, 0, false); }
   };
@@ -2583,7 +2606,7 @@ var ROOMW = {};
   // ---- east wall: the retractable bleachers, folded (two banks either side of the stowed divider), and plain panels above them
   // (on site: the college's banners; not reproduced). They stand ~30 in out from the wall: a collision.
   var E = wg("E"), bank;
-  [[rz0 + 120, Z(474) - 42], [Z(474) + 42, eDoor[0] - 110]].forEach(function (b) {   // (Z(474): the divider, mid-wall)
+  [[rz0 + 120, Z(474) - 42], [Z(474) + 42, eDoor[0] - 62]].forEach(function (b) {   // (Z(474): the divider, mid-wall)
     var L = b[1] - b[0], cx = la("E", (b[0] + b[1]) / 2), n = 3, i, g = sub(E, cx, 0, 0);
     vb(g, L, 92, 29, 0x2c5fae, 0, 0, 15.5); vb(g, L, 2, 30, 0x2f6fc0, 0, 92, 15);
     for (i = 0; i < n; i++) pl(g, imgCell("bleach", 256, 64, "bleach", "#3a78c8"), L / n, 92, -L / 2 + L / n * (i + 0.5), 46, 30.05);
@@ -2605,17 +2628,20 @@ var ROOMW = {};
   // canopies over the two east double doors (the photos: a grey hood, the exit sign on top)
   [[Z(78), Z(110)], eDoor].forEach(function (o) { var L = o[1] - o[0], m = la("E", (o[0] + o[1]) / 2);
     vb(E, L + 18, 12, 26, 0x9a9ea2, m, 92, 13); vb(E, L + 20, 2, 28, 0xb4b8bc, m, 104, 13); });
-  // the public entrance (open): a short corridor behind it, so the wall doesn't open onto nothing; its leaves stand open into
-  // it, the north one held by a doorstop: a Commodore 128 (Bill Herd, its lead hardware designer, asked for one, 2026-10-25),
-  // on the floor against the leaf, keys up. A look or a click on it: its card.
+  // the public entrance: a black double door (about 6 ft, the owner's photos), a short corridor behind it so the wall doesn't
+  // open onto nothing. The south leaf is shut; the north one stands open into the corridor, held at its tip by a doorstop: a
+  // Commodore 128 (the owner, 2026-10-25), on the floor, keys up. A look or a click on it: its card.
   (function (o) {
     var L = o[1] - o[0], m = la("E", (o[0] + o[1]) / 2);
     vb(E, L + 8, 96, 2, 0x5c5f63, m, 0, -60); vb(E, L + 8, 2, 60, 0x3a3c40, m, 96, -30);
     vb(E, 2, 96, 60, 0x8e9196, m - L / 2 - 1, 0, -30); vb(E, 2, 96, 60, 0x8e9196, m + L / 2 + 1, 0, -30);
-    vb(E, 1.6, 84, L / 2 - 1, 0x26272a, m - L / 2 + 1.5, 0, -L / 4); vb(E, 1.6, 84, L / 2 - 1, 0x26272a, m + L / 2 - 1.5, 0, -L / 4);
+    vb(E, 1.6, 84, L / 2 - 1, 0x26272a, m - L / 2 + 1.5, 0, -L / 4);                          // the north leaf, open
+    pl(E, cell("rd:1m", 52, 120, function (c, w, h) { c.translate(w, 0); c.scale(-1, 1); leaves(1)(c, w, h); }), L / 2, 84, m + L / 4, 42, 0.5);   // (its handle at the mullion) vb(E, L / 2, 84, 1.6, 0x26272a, m + L / 4, 0, -0.6);   // the south leaf, shut
+    vb(E, 2.5, 87, 1.6, 0x161718, m - L / 2 - 1.25, 0, 0.4); vb(E, 2.5, 87, 1.6, 0x161718, m + L / 2 + 1.25, 0, 0.4); vb(E, 2, 84, 1.8, 0x0e0f10, m, 0, 0.4);   // the frame, the mullion
+    solid(rx1 - 2, (o[0] + o[1]) / 2 - 1, rx1 + 3, o[1]);
     vb(E, L, 0.4, 60, 0x6b6e70, m, 0.1, -30);                                              // the corridor's floor
     solid(rx1 + 56, o[0] - 6, rx1 + 70, o[1] + 6); solid(rx1, o[0] - 8, rx1 + 62, o[0] - 1); solid(rx1, o[1] + 1, rx1 + 62, o[1] + 8);   // its walls hold
-    var cx = rx1 + L / 2 - 9, cz = o[0] + 9.5, cg = new THREE.Group(); cg.position.set(cx, 0.5, cz); cg.rotation.y = 0.12; scene.add(cg);
+    var cx = rx1 + L / 2 + 9, cz = o[0] + 8, cg = new THREE.Group(); cg.position.set(cx, 0.5, cz); cg.rotation.y = 0.12; scene.add(cg);
     W_.comp(cg, 0, 0, 17, 11, 1.7, 0xd6cfbf, 0x4b4038, 0x8a8478);                          // the C128: its case, the keys, the function row
     vb(cg, 3.4, 0.3, 2, 0x4b4038, 6, 2.6, -2.2); vb(cg, 0.6, 0.35, 0.6, 0xe0261e, -7.4, 2.55, -2.4);   // the badge strip, the power light
     var bx = new THREE.Box3(new THREE.Vector3(cx - 10, 0, cz - 7), new THREE.Vector3(cx + 10, 6, cz + 7));
@@ -2678,14 +2704,13 @@ var ROOMW = {};
     c.fillStyle = "#0b0f1c"; c.fillRect(w / 2 - 12, 30, 24, 26); tx(c, "1", w / 2, 44, 20, "#ffb02a", "center", "'Courier New', monospace");
     tx(c, "FOULS", 34, 82, 11, "#fff"); tx(c, "FOULS", w - 36, 82, 11, "#fff"); tx(c, "PLAYER", w / 2, 82, 11, "#fff");
     c.fillStyle = "#0b0f1c"; c.fillRect(w / 2 - 50, 94, 100, 22); tx(c, "0:00", w / 2, 106, 18, "#ff4a2a", "center", "'Courier New', monospace"); }), 94, 58, la("N", RCX - 160), 215, 6.1, 0, false);
-  var VF = {                                                  // the flags as they hang, on end
-    ca: function (c, w, h) { c.fillStyle = "#fff"; c.fillRect(0, 0, w, h); c.fillStyle = "#d52b1e"; c.fillRect(0, 0, w, h / 4); c.fillRect(0, h * 0.75, w, h / 4);
-      c.beginPath(); c.moveTo(w * 0.2, h / 2); c.lineTo(w * 0.62, h * 0.38); c.lineTo(w * 0.62, h * 0.62); c.fill(); },
-    us: function (c, w, h) { for (var i = 0; i < 13; i++) { c.fillStyle = i % 2 ? "#fff" : "#b22234"; c.fillRect(i * w / 13, 0, w / 13 + 0.5, h); } c.fillStyle = "#3c3b6e"; c.fillRect(0, 0, w * 0.54, h * 0.4); },
-    qc: function (c, w, h) { c.fillStyle = "#095797"; c.fillRect(0, 0, w, h); c.fillStyle = "#fff"; c.fillRect(w / 2 - 4, 0, 8, h); c.fillRect(0, h / 2 - 4, w, 8);
-      [[0.25, 0.25], [0.75, 0.25], [0.25, 0.75], [0.75, 0.75]].forEach(function (p) { c.fillRect(w * p[0] - 4, h * p[1] - 6, 8, 12); }); }
+  var VF = {                                                  // the flags as they hang, on end (the owner's photo: the leaf and the
+    ca: W_.onEnd(W_.FLAGS.ca), qc: W_.onEnd(W_.FLAGS.qc),     // lilies point left, the stars at the top right)
+    us: function (c, w, h) { for (var i = 0; i < 13; i++) { c.fillStyle = i % 2 ? "#fff" : "#b22234"; c.fillRect(i * w / 13, 0, w / 13 + 0.5, h); }
+      c.fillStyle = "#3c3b6e"; c.fillRect(w * 0.46, 0, w * 0.54, h * 0.4); c.fillStyle = "#fff";
+      for (var r = 0; r < 9; r++) for (var k = 0; k < (r % 2 ? 5 : 6); k++) c.fillRect(w * 0.46 + w * 0.54 * ((r % 2 ? 1 : 0.5) + k * 2) / 12 - 0.8, h * 0.4 * (r + 0.6) / 10, 1.6, 1.6); }
   };
-  ["ca", "us", "qc"].forEach(function (k, i) { pl(Ng, cell("vf:" + k, 48, 84, VF[k]), 30, 54, la("N", RCX + 180 + i * 34), 200, 1.2); });
+  ["ca", "us", "qc"].forEach(function (k, i) { pl(Ng, cell("vf:" + k, 72, 126, VF[k]), 30, 54, la("N", RCX + 180 + i * 34), 200, 1.2); });
   vb(Ng, 110, 1, 1.5, 0x555555, la("N", RCX + 214), 228, 1);
   function pads(g, a, b, side) {                              // dark blue wall pads, 6 ft tall, seams every 3 ft
     vb(g, Math.abs(b - a), 72, 2.5, 0x1d3a92, la(side, (a + b) / 2), 4, 1.25);
@@ -2706,26 +2731,18 @@ var ROOMW = {};
   for (i = 0; i < 6; i++) pl(Sg, BNW, 36, 54, la("S", RCX - 40 - i * 44), 210, 1);
   for (i = 0; i < 4; i++) pl(Sg, BNB, 36, 54, la("S", RCX - 40 - i * 44), 148, 1);
   // the loading door (owner's close-up): a white sectional overhead door, closed, recessed in a deep dark frame that rises to
-  // ~10.5 ft; a door but not a public exit (no sign, not on the plan, no opening). Then, toward the corner, a black double door
-  // under a grey block bulkhead with its exit sign: on site, but not on the V18 drawing (the plan's south-east door is on the
-  // east wall): drawn closed, as a wall, until the owner says which one the plan means.
+  // ~10.5 ft; a door but not a public exit (no sign, not on the plan, no opening). No other door beside it (the owner's photo,
+  // 2026-10-26): the double door under the grey bulkhead near this corner is the east wall's, the public entrance.
   var ld = la("S", RCX + 400);
   vb(Sg, 8, 126, 12, 0x232427, ld - 52, 0, 6); vb(Sg, 8, 126, 12, 0x232427, ld + 52, 0, 6); vb(Sg, 112, 10, 12, 0x232427, ld, 116, 6);
   pl(Sg, cell("rollup", 96, 96, function (c, w, h) { c.fillStyle = "#e6e7e4"; c.fillRect(0, 0, w, h); c.fillStyle = "#c6c9c8"; for (var y = 19; y < h; y += 19) c.fillRect(0, y, w, 1.5);
     c.fillStyle = "#3a3c40"; c.beginPath(); c.arc(w * 0.62, h * 0.66, 3, 0, 7); c.fill(); c.fillStyle = "#b8bcbc"; c.fillRect(0, h - 3, w, 3); }), 96, 116, ld, 58, 0.6);
-  var dd = sub(Sg, la("S", RCX + 528), 0, 0);                  // (clear of the east wall and the east door's canopy)
-  pl(dd, cell("rd:2", 88, 120, leaves(2)), 70, 84, 0, 42, 0.5);
-  vb(dd, 2.5, 87, 1.6, 0x161718, -36, 0, 0.4); vb(dd, 2.5, 87, 1.6, 0x161718, 36, 0, 0.4);
-  vb(dd, 1, 1.2, 2, 0xb8bcc0, -12, 38, 1.5); vb(dd, 1, 1.2, 2, 0xb8bcc0, 12, 38, 1.5); vb(dd, 66, 1.4, 1.4, 0xb8bcc0, 0, 38, 2.2);   // the push bars
-  vb(dd, 100, 22, 30, 0xa7a8a3, 0, 86, 15); var sl = vb(dd, 102, 2, 33, 0x8e908c, 0, 112, 14); sl.rotation.x = 0.28;   // the bulkhead, its sloped top
-  vb(dd, 22, 10, 3, 0x6d7276, 0, 94, 30); pl(dd, signCell("exit"), 21, 8.5, 0, 99, 31.6, 0, false);
   vb(Sg, 90, 26, 1, 0xf2f2ef, la("S", RCX + 250), 92, 0.8); vb(Sg, 90, 2.5, 1.2, 0xc0392b, la("S", RCX + 250), 101, 0.9);   // a plain white banner (a sponsor's, on site)
   W_.ATEX.needsUpdate = true;
 })();
 var door = ROOMW.door;
 door("E", 78, 110, "exit");                       // east wall, north corner: double doors
-door("E", 840, 872, "entrance", true);            // the public entrance (open; also an exit): east wall, south end, under its canopy
-door("E", 824, 838, "exit", true);
+door("E", 808, 855, "entrance", true);            // the public entrance (open; also an exit): east wall, south end, under its canopy
 door("W", 264, 307, "locked", false, true);       // west: "Locked doors" beside D 114 (a single door, owner 2026-10-16)
 door("W", 414, 448, "loadin", true); door("W", 482, 521, "loadin", true);   // the exhibitors' load-in doors: the two pairs mid-wall (their leaves: the vestibule)
 door("W", 700, 743, "exit", false, true); door("W", 829, 867, "exit");     // near rooms 123 and 124 (700: a single door beside the pairs, owner 2026-10-16)
@@ -2818,7 +2835,7 @@ function buildLabels() {
   m = zoneMid(D.storagezone); label(T("storage"), T("storageSub"), m[0], 96, m[1]);
   m = zoneMid(D.codezone); label(T("jam"), null, m[0], 96, m[1]);
   m = zoneMid(D.cross); label(T("cross") + " " + ft((Z(D.cross[3]) - Z(D.cross[1])) / 12), null, m[0], 110, m[1]);
-  label(T("entrance"), null, X(880), 140, Z(856));
+  label(T("entrance"), null, X(880), 140, Z(831));
 }
 LANG_HOOKS.push(buildLabels);                        // (built by applyLang at load: once)
 if (document.fonts && document.fonts.ready) document.fonts.ready.then(function () { if (lblFonts() !== lblMetrics) buildLabels(); });
@@ -3374,7 +3391,7 @@ function before(k, turn, text, sub, dz) {
   return b && { x: aisleBefore(b), z: b.cz + (dz || 0), yaw: (b.face === "W" ? -Math.PI / 2 : Math.PI / 2) + (turn || 0), text: text, sub: sub };
 }
 var PLACES = {
-  entrance: { x: X(870), z: Z(856), yaw: Math.PI / 2 - 0.3, text: "Public entrance", sub: "The islands ahead and to the right" },   // just inside the east door
+  entrance: { x: X(870), z: Z(831), yaw: Math.PI / 2 - 0.3, text: "Public entrance", sub: "The islands ahead and to the right" },   // just inside the east door
   ours: before("29", 0, "29 · Land of the Portables", (window.SITE_BUILD ? "" : "Our booth: ") + "3 tables of luggables and laptops, the network rack behind"),
   lan: before("10", -0.2, "10 · Griefenbunker LAN Party", "Two tables of LAN PCs with LCDs, keyboards and gamepads")
 };
@@ -3703,8 +3720,8 @@ var mapBase = document.createElement("canvas"); mapBase.width = mapBase.height =
   rect(D.cash, "#b4572a"); if (FREEPILE) rect(FREEPILE, "#e0b43a");   // the free pile (not on the plan)
   // the public entrance: the east wall's south door in red, an arrow pointing in; the west load-in doors in grey
   [[414, 448], [482, 521]].forEach(function (o) { rect([R[0] - 3, o[0], 9, o[1] - o[0]], "#8d9294"); });
-  rect([R[2] - 6, 840, 9, 32], "#b3342f");
-  var ea = mapBase.px(R[2] - 8, 852); g.fillStyle = "#b3342f"; g.beginPath(); g.moveTo(ea[0], ea[1] - 5); g.lineTo(ea[0] - 8, ea[1]); g.lineTo(ea[0], ea[1] + 5); g.closePath(); g.fill();
+  rect([R[2] - 6, 808, 9, 47], "#b3342f");
+  var ea = mapBase.px(R[2] - 8, 831); g.fillStyle = "#b3342f"; g.beginPath(); g.moveTo(ea[0], ea[1] - 5); g.lineTo(ea[0] - 8, ea[1]); g.lineTo(ea[0], ea[1] + 5); g.closePath(); g.fill();
   D.arcade.forEach(function (r) { rect(r, "#1d1f3a"); });
   D.power.forEach(function (q) { rect([q[0] + 2, q[1] + 3, 12, 10], "#c8423f"); });
 })();
@@ -4030,7 +4047,7 @@ var crowd = (function () {
     var w = ROOMW.loadin && ROOMW.loadin.open();       // (the game's load-in and teardown: the crews come in through the west doors)
     for (var k = 0; k < 8; k++) {                     // (a free spot in the corridor, or the vestibule)
       if (w) { var o = wDoor[Math.floor(r() * wDoor.length)]; v.x = rx0 - 24 - r() * 30; v.z = o[0] + 12 + r() * (o[1] - o[0] - 24); }
-      else { v.x = rx1 + 14 + r() * 30; v.z = eDoor[0] + 12 + r() * (eDoor[1] - eDoor[0] - 24); }
+      else { v.x = rx1 + 14 + r() * 10; v.z = eDoor[0] + 15 + r() * ((eDoor[1] - eDoor[0]) / 2 - 27); }   // (in line with the open north leaf, short of the doorstop)
       if (free(v.x, v.z)) break;
     }
     v.yaw = v.tyaw = w ? -Math.PI / 2 : Math.PI / 2; v.amp = 0; plan(v);
